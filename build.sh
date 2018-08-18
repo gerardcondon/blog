@@ -12,4 +12,4 @@ git submodule update
 cd website
 bundle
 middleman build
-#middleman deploy
+middleman deploy
