@@ -70,6 +70,8 @@ end
 
 # Proxy pages (https://middlemanapp.com/advanced/dynamic_pages/)
 
+proxy "/gaeilge.html", "/resources.html",
+    :locals => {title: "Gaeilge", resources: data.gaeilge }, :ignore => true
 ###
 
 # Automatic image dimensions on image_tag helper
