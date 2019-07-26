@@ -3,6 +3,7 @@ title: "Uaine? Cad é uaine?"
 date: 2019-07-21 08:00
 tags: gaeilge
 keywords: uaine, glas
+image: AnHobad.jpg
 ---
 
 Of all the Irish words I expected to learn when reading "An Hobad", I never expected one of those to be "green".
