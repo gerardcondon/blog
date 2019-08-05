@@ -16,3 +16,7 @@
   date: "2019-07-20"
 - text: "I'm really enjoying the Fortnite World Cup. A lot more than some actual sports events I've watched this year. The spectator mode they use when you can see all the players is great. Incredible to think that they're hosting this in the Arthur Ashe tennis stadium."
   date: "2019-07-27"
+- text: "Had problems with Github on [Codenvy](https://codenvy.io) where it wouldn't connect to the server. I had to force it to connect over https to fix the issue. See [this page](https://help.github.com/en/articles/using-ssh-over-the-https-port) for instructions."
+  date: "2019-08-04"
+- text: "In order to test my static site before I push it, I need to run `middleman server` to test it out. On Codenvy the port won't be exposed by default so you will need to [add a server](https://codenvy.com/docs/user-guide/previews/index.html#servers-in-user-dashboard) for the port"
+  date: "2019-08-05"
