@@ -1,0 +1,19 @@
+---
+title: <%= title %>
+---
+
+.container
+  .row
+    .col-md-8
+    <% resources.to_h.each do |name, phrases| %>
+        <table class="table table-bordered table-striped">
+        <thead><tr>
+        <%= "<th colspan=\"2\">#{name}</th>" %>
+        </tr></thead><tbody>
+        <% phrases.each do |phrase| %>
+            <% phrase.each do |key, value| %>
+                <%= "<tr><td>#{key}</td><td>#{value}</td></tr>\n" %>
+            <% end %>
+        <% end %>
+        </tbody></table>
+    <% end %>
