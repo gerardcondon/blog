@@ -7,7 +7,7 @@ git config --global user.name "$USER_NAME"
 git config --global user.email "$USER_EMAIL"
 
 git submodule init
-git submodule update
+git submodule update --remote
 
 cd website
 bundle
