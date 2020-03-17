@@ -77,11 +77,12 @@ end
 
 proxy "/gaeilge.html", "/resources.html",
     :locals => {title: "Gaeilge", resources: data.gaeilge }, :ignore => true
-    
-p data
 
 proxy "/gaeilge-phrases.html", "/phrases.html",
     :locals => {title: "Gaeilge Phrases", resources: data["gaeilge-phrases"] }, :ignore => true
+
+proxy "/warhammer.html", "/resources.html",
+    :locals => {title: "Warhammer", resources: data["warhammer"] }, :ignore => true
 ###
 
 # Automatic image dimensions on image_tag helper
