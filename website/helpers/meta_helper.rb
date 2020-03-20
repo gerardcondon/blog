@@ -35,7 +35,7 @@ def page_keywords
 end
 
 def embed_media(text, image_name)
-  pre = '<div class="media"><div class="media-left"><a href="#"><img class="thumbnail media-object" style="height: 120px;" src="gerardcondon.com/blog/images/'
+  pre = '<div class="media"><div class="media-left"><a href="#"><img class="thumbnail media-object" style="height: 120px;" src="https://www.gerardcondon.com/blog/images/'
   middle = '"></a></div><div class="media-body">'  
   post = '</div></div>'
   return pre + image_name + middle + "\n\n" + text  + "\n\n" + post
