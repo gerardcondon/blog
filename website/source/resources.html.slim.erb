@@ -6,7 +6,7 @@ title: <%= title %>
   .row
     .col-md-8
     <% resources.to_h.each do |name, rdata| %>
-        <%= "<h2>#{name}</h2>" %>
+        <%= "<h2 id=\"#{name}\">#{name}</h2>" %>
         <% p name %>
         <ul>
         <% rdata.each do |resource| %>
