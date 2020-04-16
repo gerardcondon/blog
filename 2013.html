@@ -1,0 +1,363 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h3>
+  Archive for 2013
+</h3>
+<p>
+  Page 1 of 2
+</p>
+<ul>
+  <h5>
+    <a href="2013/07/10/automating-javascript-jasmine-unit-tests.html">Automating Jasmine Unit Tests</a>
+  </h5><p>For the first cut at automating my JavaScript unit testing, I started running them from the command line via <a href="http://phantomjs.org/">PhantomJS</a>. PhantomJS is a headless browser so it will render my HTML &amp; CSS and execute the JavaScript, but will not display it on the screen. The steps I followed were:</p>
+
+<ul>
+<li><p>I installed phantomjs from <a href="http://phantomjs.org/download.html">here</a> using homebrew <code>brew install phantomjs</code>.</p></li>
+<li><p>I got the command for running Phantom.js <a href="http://kilon.org/blog/2013/01/running-jasmine-tests-with-phantomjs/">here</a>.</p></li>
+<li><p>I found the default output from Phantom.js to be lacking in detail. I came across a good link <a href="http://blog.jphpsf.com/2012/10/31/running-Jasmine-tests-with-Phantom-js-or-Webdriver">here</a> which shows how to add stack traces on failure and how to add colours to the output using a console reporter.</p></li>
+</ul>
+
+<p>In future, I&#39;d like to add this to a build system which will run jshint on my code and also do whatever minfication/optimizations are needed. It&#39;s looking like <a href="http://gruntjs.com/">Grunt</a> is a good tool for this so will investigate that further.</p>
+
+  <p>
+    <small><a href="2013/07/10/automating-javascript-jasmine-unit-tests.html">→</a> posted on July 10, 2013<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/06/04/the-design-of-icloud.html">The Design of iCloud</a>
+  </h5>
+  <p>There&#39;s been a lot of blog posts from developers recently about the problems with iCloud syncing. The Verge has a great summary <a href="http://www.theverge.com/2013/3/26/4148628/why-doesnt-icloud-just-work">here</a>. There are quite a few who are removing iCloud from their products and going with other syncing options such as Dropbox.</p>
+  
+  <p>The impression I get from these discussions is that it&#39;s the reliability of iCloud that&#39;s the problem, i.e. if iCloud was rock solid then it would be a great option for your app. I disagree with this view and I think the design of iCloud is fundamentally flawed.</p>
+  
+  <p>I think that even if iCloud Database syncing was perfectly reliable, it would still be a bad way of syncing data. One conclusion I&#39;ve drawn from looking at web backends and Rails in particular, is that iCloud is only useful if you want to stick to Apple devices. There is no way to get at this data outside of iOS or OS X. In particular it is impossible to access this from a web application. For this reason, I think it&#39;s vital to have a proper backend if you are storing data in the cloud.</p>
+  
+  <p>The other mode of iCloud syncing is the Document based syncing. The issue I have with this is that anything stored in iCloud is restricted to the application that created it. This is a major issue when an application stores data in a common file format (e.g. plain text or image formats such as PNG or JPEG) that you may expect to be able to use in another application. Dropbox is a far superior solution in this case. I feel much more confident in the apps which use this over iCloud, as I will always have access to the data files.</p>
+  
+  <p>The other day, Brent Simmons <a href="http://inessential.com/2013/05/07/30_minutes_to_sync">posted</a> a great proposal for an Apple backend service. They really need to do something here as their competitors aren&#39;t standing still. Microsoft is on the right track here with Azure and similarly Amazon&#39;s cloud computing services are going from strength to strength. It will be interesting to see if anything will be announced for iCloud at WWDC.</p>
+  
+  <p>
+    <small><a href="2013/06/04/the-design-of-icloud.html">→</a> posted on June  4, 2013<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/05/22/test-driven-design-in-practice.html">Test Driven Design in practice</a>
+  </h5>
+  <p>I recently tried implementing a JavaScript project at work using the testing methods I&#39;ve learned from the <a href="http://www.destroyallsoftware.com">Destroy All Software</a> Screencast. It ended up being some of the best code I&#39;ve written. The interfaces grew neatly, it wasn&#39;t not over designed and it was completely covered by tests. It&#39;s the project that I have the most confidence in its correctnesss. It&#39;s nice to know that despite any modifications in future, as long as all the tests pass it will pretty much always work first time.</p>
+  
+  <p>Anywhere I&#39;ve worked up to now, testing was always seen as something that you implemented after the fact. Code coverage was the main driver of the testing. However this approach completely misses the input that TDD has on the design of the application. By writing applications so that they can be tested easily, they turn out to be much better designed. They are less coupled and all the dependencies are visible. Having the design emerge from the growing system is better than imposing over elaborate architecture and patterns top down.</p>
+  
+  <p>I found a couple of good resources recently on testing and the impact it has on your code. This is a good <a href="http://vimeo.com/15007792">talk</a> by Michael Feathers on the synergy between testing and design. He shows how testing problems are indicative of design problems. Misko Hevery&#39;s <a href="http://misko.hevery.com">site</a> has some great presentations and resources on how to design code that is testable. </p>
+  
+  <p>
+    <small><a href="2013/05/22/test-driven-design-in-practice.html">→</a> posted on May 22, 2013<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/05/05/learning-javascript.html">Learning JavaScript</a>
+  </h5>
+  <p>Last year, the project I was working on at work switched languages for its UI code from C++ to HTML and JavaScript. For me, this meant learning JavaScript and web development.</p>
+  
+  <p>When I was in college, we studied Java as the &quot;proper&quot; programming language and barely covered JavaScript - only as part of a HTML course. Back then, I never really saw it as anything more than a language for adding simple dynamic features to a web page. However ten years later, and (hopefully!) knowing a great deal more about programming, my opinions have changed. Now, I have a whole new respect for JavaScript, based on features that I wouldn&#39;t have been able to really comprehend back then. </p>
+  
+  <p>I love the power that first class functions and closures give you. It&#39;s spoiled me as a programmer as I&#39;m finding it hard going back to languages without those features! I know that they are coming, or have recently come, to Java and C++. However given the nature of exising legacy codebases in those languages and that projects may be restricted to earlier compilers, it&#39;ll be a while before they&#39;re mainstream.</p>
+  
+  <p>There are no shortage of in-depth JavaScript books and tutorials which teach all the features of the language. However learning JavaScript syntax and features is not the problem. The real issue is knowing what features to avoid. Unfortunately it&#39;s incredibly easy to write unmaintainable code in JavaScript if you&#39;re not careful. Luckily there are some very good books written on this topic. The ones I recommend are:</p>
+  
+  <ul>
+  <li>Douglas Crockford&#39;s <a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">JavaScript: The Good Parts</a>. This is an really good compact book. It allows you to limit yourself to the features of JavaScript which support good software development practices.</li>
+  <li>Nicholas Zakas&#39;s <a href="http://www.amazon.com/Maintainable-JavaScript-Nicholas-C-Zakas/dp/1449327680">Maintainable JavaScript</a>. Again this book is more than a simple explanation of JavaScript syntax. It&#39;s topics include JavaScript programming practices and build automation. The build process part is especially useful for learning the proper process for building, linting and testing JavaScript code.</li>
+  <li>Marijn Haverbeke&#39;s <a href="http://eloquentjavascript.net">Eloquent JavaScript</a>. This is available for free on the website. The really cool part about the site is that all the JavaScript code snippets are interactive and can be run on the page while you are reading them.</li>
+  </ul>
+  
+  <p>
+    <small><a href="2013/05/05/learning-javascript.html">→</a> posted on May  5, 2013<span class="tag-item"><small class="label label-default label-tag">javaScript</small></span><span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/04/23/irish-rail-realtime-api.html">Irish Rail's RealTime API</a>
+  </h5>
+  <p>I spent a lot of time in my childhood and early twenties traveling on the Irish Rail Network. Mostly this seemed to involve waiting for ages at Limerick Junction or barely finding a space to stand on a packed train from Dublin. Those experiences didn&#39;t exactly leave me with a great impression of <a href="http://www.irishrail.ie">Iarnród Éireann</a>. </p>
+  
+  <p>Given this, I was amazed to find out recently, that Iarnród Éireann have an <a href="http://api.irishrail.ie/realtime/index.htm">XML API</a> for accessing realtime data about the trains running on their network. Credit where credit is due, this is an excellent idea and I wish more companies would implement something similar.</p>
+  
+  <p>The API provides functionality for getting a list of the stations and what trains are due at those stations in the next ninety minutes. It also gives a list of all trains active on the network. It can filter by DART, Suburban or Mainline trains (that leaves some trains in an &#39;other&#39; category - I&#39;m not too sure what these actually are). </p>
+  
+  <p>I used this API as part of a Backbone learning <a href="http://www.gerardcondon.com/projects/irishrail/index.html">project</a>. It was quite fun to do. The API returns latitude and longitude coordinates for each station and train, allowing them to be plotted on a Google Map widget. I never realised there were so many stations in Ireland until I saw them plotted on the map.</p>
+  
+  <p>One issue I ran into was testing the application with live data. Given that I was programming this at night after work, you&#39;d soon reach a time when there are very few trains left on the network!</p>
+  
+  <p>One technical detail about the API is that it is in XML rather than JSON. This means that I can&#39;t use Ajax or JSONP to get the data, due to the same origin policy. Instead I had to bounce the results through <a href="http://developer.yahoo.com/yql/">YQL</a>. YQL exposes a SQL like interface to web data. I&#39;m only using a basic &#39;select all&#39; query here but looking at their site you can do lots of cool and complex stuff. I found a good <a href="http://www.cypressnorth.com/blog/programming/cross-domain-ajax-request-with-xml-response-for-iefirefoxchrome-safari-jquery/">tutorial</a> from Cypress North on how to use YQL in your code to consume an XML API.</p>
+  
+  <p>
+    <small><a href="2013/04/23/irish-rail-realtime-api.html">→</a> posted on April 23, 2013<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/04/17/uncle-bobs-architecture-talk.html">Uncle Bob's "Architecture The Lost Years" Talk</a>
+  </h5>
+  <p>I found this <a href="http://confreaks.com/videos/759-rubymidwest2011-keynote-architecture-the-lost-years">talk</a> by Uncle Bob Martin to be really enjoyable and thought provoking. In it he talks about decoupling your application from the database and the web. It&#39;s ostensibly a Rails talk but I think it applies to every language. </p>
+  
+  <p>It really crystalized the issues I&#39;ve been having with developing Objective-C applications i.e. the intermixing of the database (specifically Core Data) and UI code. After viewing this, I was able to come to iOS development with a whole new perspective. It&#39;s so much clearer to me now how to architect applications, where code belongs and what interfaces are needed. After completely separating Core Data and UI code, the whole application has gotten a lot simpler and is much easier to unit test.</p>
+  
+  <p>It also introduced me to Alistair Cockburn&#39;s <a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal Architecture</a>. This is a really nice architecture for isolating the application from external entities such as the GUI or database. I&#39;ve seen this crop up more and more on various Rails blogs under the term &#39;Hexagonal Rails&#39;.</p>
+  
+  <p>As a reference, <a href="http://blog.8thlight.com/uncle-bob/2011/11/22/Clean-Architecture.html">here</a> and <a href="http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html">here</a> are a couple of other links from Bob Martin&#39;s blog talking about &quot;clean architecture&quot;.</p>
+  
+  <p>
+    <small><a href="2013/04/17/uncle-bobs-architecture-talk.html">→</a> posted on April 17, 2013<span class="tag-item"><small class="label label-default label-tag">architecture</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/03/18/side-project-irish-rail-tracker.html">Side Project: Irish Rail Tracker</a>
+  </h5>
+  <p>I&#39;ve been working on a <a href="http://www.gerardcondon.com/projects/irishrail/index.html">side project</a> for the last month in order to learn about front-end web development. While not complete by any means, I think it&#39;s good enough to release as a beta. I plan to add features, improve the UI and refactor the code in future.</p>
+  
+  <p>The motivation behind it was that I wanted to do a project using one of the JavaScript <a href="http://addyosmani.github.com/todomvc/">MVC Frameworks</a> - for this one I chose <a href="http://backbonejs.org">Backbone</a>. Also I&#39;ll be working more with HTML and CSS in work over the coming year and I need to ramp up on these.</p>
+  
+  <p><a href="http://www.irishrail.ie">Iarnród Éireann</a> (the Irish Rail company) has a REST API which provides details of the stations in its network and the current status of its trains. My <a href="http://www.gerardcondon.com/projects/irishrail/index.html">webpage</a> plots these stations and trains on a Google Map and shows upcoming train information for each station.</p>
+  
+  <p>I plan to write a series of posts on how I implemented this and the lessons I learned along the way.</p>
+  
+  <p>The project is available <a href="http://www.gerardcondon.com/projects/irishrail/index.html">here</a> and the code is available on <a href="https://github.com/gerardcondon/Irish-Rail-Tracker">Github</a> under the MIT licence. The roadmap.md document is where I&#39;m tracking future work that needs to be done on the project. Any feedback would be much appreciated.</p>
+  
+  <p>As far as the code goes:</p>
+  
+  <ul>
+  <li>I&#39;m happy enough with the Backbone model and collection code. The Backbone view code still needs some refactoring to remove duplication and use proper Backbone idioms. </li>
+  <li>There are some JavaScript <a href="http://pivotal.github.com/jasmine/">Jasmine</a> tests - mostly for the model. I&#39;m still figuring out the best way to test the UI - I have some Jasmine tests but also some Ruby <a href="https://github.com/jnicklas/capybara">Capybara</a> tests for the browser.</li>
+  <li>The HTML and CSS code are functional rather than elegant. I&#39;m hoping to improve these as time goes by and as I get more experience with these languages.</li>
+  </ul>
+  
+  <p>
+    <small><a href="2013/03/18/side-project-irish-rail-tracker.html">→</a> posted on March 18, 2013<span class="tag-item"><small class="label label-default label-tag">projects</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/03/17/controllers-in-objective-c.html">Controllers in Objective C</a>
+  </h5>
+  <p>One of the things to learn about iOS is the MVC model. The Cocoa implementation of MVC has some <a href="http://developer.apple.com/library/ios/documentation/general/conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html#//apple_ref/doc/uid/TP40010810-CH14-SW9">differences</a> compared to the traditional approach. For example, in Cocoa, views are not aware of the models and don&#39;t listen for model updates. Instead the all events pass through the controller, i.e. it listens for model changes and then tells the view to update itself.</p>
+  
+  <p>In <a href="http://rubyonrails.org/">Rails</a>, the constant refrain is that controllers should be thin. However on iOS they seem to be absolutely huge. One joke that I saw on Twitter was that on iOS, MVC stood for Massive View Controller. For example, the Recipe sample application from Apple has controllers with hundreds of lines of code with one topping out at 600 LOC.</p>
+  
+  <p>One of my issues with these view controllers is that they don&#39;t follow the Single Responsibility Principle, but instead combine multiple functions. They act as delegates for multiple protocols e.g. table data source, fetched results controller delegate etc. I find it hard to distinguish the separate elements of MVC when one class is doing everything. Also in Objective C, once everything is in the same file, it&#39;s not obvious to which protocol an item belongs. I think this risks breaking the MVC boundaries. For example, during a refactor, if you&#39;re not careful, you can easily get model variables depending on controller variables and vice-versa.</p>
+  
+  <p>I&#39;d much prefer it if these controllers were split out into lots of different classes, each with a single job as per the SRP. This would lead to a more composition-based rather than inheritance-based codebase. I also think that this greatly helps with code navigation. Jumping to a small, focused file has the effect of filtering out irrelevant code. I&#39;ve started using Sublime Text recently and it has great functionality for navigating between files, so I prefer having lots of smaller files rather than a few large monolithic classes.</p>
+  
+  <p>(On a side note this is one thing that really annoys me about XCode. Given a properly nested folder structure with well named files, I think it becomes a lot easier to find your way around the app. For example even after only a few weeks learning Rails, I know exactly where to look to find the controllers, models, db code etc. But XCode is a disaster here. It doesn&#39;t push the groupings made in the app on to the file system underneath. It requires duplicate effort of organising the code both inside and outside the application to keep the codebase properly organised.)</p>
+  
+  <p>
+    <small><a href="2013/03/17/controllers-in-objective-c.html">→</a> posted on March 17, 2013<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/02/27/destroy-all-software-screencasts.html">Destroy All Software Screencasts</a>
+  </h5>
+  <p>I recently subscribed to Gary Bernhardt&#39;s <a href="https://www.destroyallsoftware.com/screencasts">Destroy All Software</a> screencasts. I found these absolutely fantastic. There are only about ten to fifteen minutes each in length so it&#39;s no hassle to find the time to watch them. However they cover a lot in the short time.</p>
+  
+  <p>They are mostly Ruby and in particular Rails focused but the topics are applicable to any software programming. For example, I&#39;ve really learned a great deal about TDD from watching this. </p>
+  
+  <p>The Github <a href="https://github.com/garybernhardt/destroy-all-software-extras">archive</a> is useful, especially the <a href="https://github.com/garybernhardt/sucks-rocks">Suck/Rocks</a> Rails app. His <a href="https://github.com/garybernhardt/dotfiles">Git</a> config file is also really handy and I really like his log formatting. I would have liked to see him post a larger sample Rails app to Github (or for the ultimate in wishful thinking - the code for the Destroy All Software site). It would expand upon how his ideas work when confronted with the complexity and messiness of a real world system.</p>
+  
+  <p>Overall I highly recommend the series for any programmer regardless of what language you are using. Unfortunately I believe he&#39;s stopping soon but you get access to the entire back catalog with a subscription and they&#39;re well worth it.</p>
+  
+  <p>
+    <small><a href="2013/02/27/destroy-all-software-screencasts.html">→</a> posted on February 27, 2013<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2013/02/23/year-update-and-reflections.html">Year Update and Reflections</a>
+  </h5>
+  <p>It&#39;s been a year, give or take, since I started looking into iOS development, and I wanted to write a post to reflect on where I am and what are the next steps.</p>
+  
+  <p><strong>Progress on iOS to Date</strong></p>
+  
+  <ul>
+  <li><p>I spent the first three months of the year learning Objective C and hacking on some small programs. </p></li>
+  <li><p>I spent some time experimenting with Core Data and MVC and trying to get an automated testing system up and running.</p></li>
+  <li><p>The summer months were quiet due to work commitments. The project I was working on switched to JavaScript which I hadn&#39;t really used before. Due to this, I spent a lot of time learning JavaScript and web frontend and backend development.</p></li>
+  <li><p>After the summer I came back to the app with a better understanding of MVC as implemented in iOS and Core Data and I started working on it again. I read up on TDD and started implemented tests using Cucumber and Calabash. That took me up to about October.</p></li>
+  <li><p>Work has stalled on it since then due to a combination of real life commitments from both family life and work. And also Skyrim! Curse you Skyrim and the hours I sank into it :)</p></li>
+  </ul>
+  
+  <p><strong>Current Status</strong></p>
+  
+  <p>Here&#39;s where I am currently</p>
+  
+  <ul>
+  <li><p>App work: I didn&#39;t get as much done as I had planned at the start of last year. I got diverted in other areas, namely: </p></li>
+  <li><p>Testing - TDD &amp; BDD: I hadn&#39;t planned to look at any of this but ended up spending a lot of time here and learning a great deal. Familiarizing myself with this way of programming was probably the biggest benefit I gained from the last years experimentation. I probably could have completed the app if I didn&#39;t spend so much time on TDD and tinkering with automated testing setups on Jenkins. However I wouldn&#39;t have learned anywhere near as much about proper programming techniques if I did.</p></li>
+  <li><p>JavaScript: I spent a good deal of time learning proper JavaScript development. The basic syntax is very similar to Java which I already knew. However I wanted to learn how to program using JavaScript correctly i.e. modular code using RequireJS, TDD using Jasmine etc.</p></li>
+  <li><p>Ruby and Rails: again I had not planned on researching any of this but I got interested in it while looking at JavaScript. Have done a few tutorials and would like to write a Rails app at some stage.</p></li>
+  </ul>
+  
+  <p>I spent a lot of time over the last year becoming proficient in web app and backend development in JavaScript for a work project. I&#39;ve been really enjoying this. My only previous experience of JavaScript and web development was back in college around 2000 and I wasn&#39;t too taken with it compared to Java and C development. But looking at it now and in combination with backends like Rails, I&#39;ve been really impressed. I&#39;m kind of kicking myself for tuning out on what was happening in web development over the past decade. I plan to branch out and do some posts on what I used to ramp up on this.</p>
+  
+  <p>On the iOS front I feel that I have a good knowledge of Objective C. However the issue is finding time to finish the app. Any time I was able to set aside a sizable chunk of time I got a lot done but getting that time is the key.</p>
+  
+  <p><strong>Reflections</strong></p>
+  
+  <p>I think working on this side project has made me expand my horizons more as a developer. I couldn&#39;t have predicted the areas that I would have become interested in at the start of last year. I don&#39;t think it&#39;s a coincidence that as I&#39;ve started looking at more stuff outside of work, that my work projects have become more interesting. I feel like I&#39;m able to bring so much more to a project now especially in the areas of TDD and design.</p>
+  
+  <p>Admittedly I haven&#39;t pursued the iOS work 100%, but I feel that the other languages I&#39;ve been exposed to compensate for that. I think it was better to start out with iOS and then divert into other topics rather than not do any side work at all.</p>
+  
+  <p>However at the end of the day the reality is that I haven&#39;t shipped anything on iOS yet. I&#39;ve been justifying this to myself by claiming all these other intangible benefits. Given what I&#39;ve learned, I don&#39;t think that I&#39;ve wasted my time but still I&#39;d like to get some iOS project finished. Unfortunately given my current life and work commitments I probably won&#39;t have time to work on it over the next three months. In the meantime, I&#39;ll post about my JavaScript and TDD experiences.</p>
+  
+  <p>As regards the blog, looking back I am happy enough with what was posted in the past year. The main thing I&#39;m not happy with is the regularity of the postings. The same things that have stopped me doing much software work, have also stopped me publishing much. In future I want to maintain a more regular posting rate. I aim to post at least once a fortnight and hopefully once a week.</p>
+  
+  <p>
+    <small><a href="2013/02/23/year-update-and-reflections.html">→</a> posted on February 23, 2013<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+</ul>
+<p>
+  <a href="2013/page/2.html">Next page</a>
+</p>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

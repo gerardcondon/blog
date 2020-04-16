@@ -1,0 +1,417 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h5>
+  <a href="../../2012/02/17/adding-code-coverage-to-unit-tests.html">Adding Code Coverage to Unit Tests for Xcode 4.2</a>
+</h5>
+<p>If you are going to the effort of having unit tests, then you really need to have code coverage. This will allow you to ensure that your tests are exercising all your code. It is really easy to spot a missing test when you see a branch of an if-else with no coverage. Code coverage for me is also a way to motivate myself to implement the tests. It&#39;s like high scores in games - it gives me a target to aim for. Coverage gives feedback that your tests are actually doing something, and with each test you add, you can see the areas of untested code steadily decrease.</p>
+
+<p>To set up code coverage in Xcode 4.2 I used the guide on these blogs - <a href="http://www.infinite-loop.dk/blog/2011/05/covering-it-all-up/">Infinite Loop</a> and <a href="http://mattrajca.com/post/8749868513/llvm-code-coverage-and-xcode-4">Matt Rajca</a>. Originally only the gcc compiler was supported but since then the Clang compiler has had code coverage enabled. This is important as we need to use Clang for ARC and static analysis among other things. </p>
+
+<p><strong>XCode Build Settings</strong></p>
+
+<p>Xcode has the concept of build configurations which can have built settings altered independently of each other. The two default configurations are Debug and Release. We want to add a new configuration named Coverage. To do this duplicate the Debug configuration. </p>
+
+<p>{% img /images/codeCoverage/NewBuildConfig.png New Build Configuration %}</p>
+
+<p>In order to specify different settings for configurations in Xcode, hover over the left hand margin directly to the left of the setting we wish to update. An arrow will appear which when clicked will expand to an additional three lines for Debug, Coverage and Release. Editing the top line will alter the setting for all versions. Altering either of the new lines will only update the setting for that version of the build.</p>
+
+<p>{% img /images/codeCoverage/BuildSettings.png Build Settings %}</p>
+
+<ul>
+<li>  Open the Build Settings tab for the main target. Under &quot;Apple LLVM 3.0 compiler - Code Generation&quot;, enable both
+
+<ul>
+<li>  &quot;Generate Test Coverage Files&quot;</li>
+<li>   &quot;Instrument Program Flow&quot;</li>
+</ul></li>
+<li>   We now need to add the libprofile<em>rt library to the build. This will link in the implementations of the coverage functions. If you are seeing link errors like &quot;</em>llvm<em>gcda</em>increment<em>indirect</em>counter&quot;, referenced from:&quot;, then you have not done this step.<br>
+This library is located in /Developer/usr/lib. This folder contains libprofile.a which is a static library and a libprofile.dylib which is a dynamic linked library (similar to a .dll in Windows). To link this open the Build Phases tab for the main target. Expand the &quot;Link Binary with Libraries&quot; and click the + button. Click &quot;Add Other&quot; and then find libprofile_rt.dylib in the file viewer and add it. (Note that this doesn&#39;t work for me since Xcode 4.3. I&#39;ve documented the updates I needed to make <a href="http://www.gerardcondon.com/blog/2012/02/21/code-coverage-updates-for-xcode-4-dot-3/">here</a>).</li>
+</ul>
+
+<p><strong>Executing Tests</strong></p>
+
+<p>Now your unit tests should run and if you examine the build output files under the DerivedData folder you should find .gcda and .gcno coverage files along with your .o files. To find this folder you can go to the Projects tab in the Organizer and select your project. The path to the Derived Data folder is listed here along with an arrow which will open the folder in the Finder. </p>
+
+<p>{% img /images/codeCoverage/DerivedData.png Derived Data %}</p>
+
+<p>From here the path to the coverage files is Build/Intermediates/${Project Target}.build/Coverage-iphonesimulator/${Project Target}.build/Objects-normal/i386. Replace ${Project Target} with the name of your project target.</p>
+
+<p><strong>Viewing Coverage Data</strong></p>
+
+<p>To view the coverage data I used <a href="http://code.google.com/p/coverstory/">CoverStory</a>. Simply open the app and point it at the coverage folder. This will give a nice two pane display showing your files on the left and an editor which shows how often each line of code was hit. Now you can identify untested code and add new tests to cover them.</p>
+
+<p>
+  <small><a href="../../2012/02/17/adding-code-coverage-to-unit-tests.html">→</a> posted on February 17, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/02/16/moving-the-blog-to-octopress.html">Moving the blog to Octopress</a>
+</h5>
+<p>I&#39;ve decided to switch the blog from <a href="http://www.wordpress.com">Wordpress.com</a> to an <a href="http://www.octopress.org">Octopress</a> site hosted on <a href="http://pages.github.com">Github Pages</a>. From now on there will be no more new posts on Wordpress. I&#39;ve also registered the domain <a href="http://www.gerardcondon.com">gerardcondon.com</a> and will be using this address for the blog in future. </p>
+
+<p>I have a few reasons for switching</p>
+
+<ul>
+<li><p>I found Wordpress.com to be an excellent site in general. When starting off it was very easy to create and get the blog up and running. However you have to use their site to create your posts. Even if you use a text editor you still ultimately have to paste the post into their site, and all subsequent edits have to be done through Wordpress.com. Also the definitive version of the posts are stored in their database. </p>
+
+<p>I prefer to write my documents in plain text files using a markup language. Previously I&#39;ve used <a href="http://www.latex-project.org/">Latex</a> and more recently I&#39;ve started using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. This has a number of advantages, namely the files can be edited in any editor on any platform and they work very well with source control. Also by separating the content from the typesetting phase, I find that you concentrate better on the actual writing. I hate having to wrestle with formatting in Word; I much prefer leaving that to a program. Donald Knuth &amp; Co. have forgotten more about typesetting than I will ever know.</p>
+
+<p>Wordpress.com doesn&#39;t support Markdown so posting involved an extra step of converting the Markdown to HTML. This meant that I had two versions of the blog. One in Markdown on my local machine and another in HTML on Wordpress. For me, it&#39;s an axiom that whenever you have two versions of the same data, they will get out of sync. One needs to be the main source. I wanted the local Markdown version to be the canonical version of the site and everything else derived from that.</p></li>
+<li><p>I think the default Octopress theme looks really good (I really like the Archive page). I first noticed it on <a href="http://www.mattgemmell.com">Matt Gemmell&#39;s</a> site and was impressed by how it looked. It also looks well on mobile sites. I have full control of the css using Octopress so I can tweak whatever I want. I liked the <a href="http://theme.wordpress.com/themes/titan/">Titan</a> theme on Wordpress except I hated the crosses using for lists. On Wordpress.com there was no way to change these. However on Octopress I make any kind of style update.</p></li>
+<li><p>I realised that I should get my own domain name instead of using the Wordpress.com address. In future if I need to move my site I can just redirect the domain name and any old links will still work. Whereas I will never own or control the gerardcondon.wordpress.com links. It&#39;s better to move now, rather than after I create lots of content at a non portable url. Start as you mean to go on.</p></li>
+</ul>
+
+<p>The posting workflow is much better now. I write my posts in Markdown on the Mac or on iOS via <a href="http://www.hogbaysoftware.com/products/writeroom">WriteRoom</a>. Then I run a command from the terminal to regenerate the site and deploy it to Github. Edits work in the same way. The Markdown files also get committed to Github ensuring that no matter where I move the blog in future I will always have the content in an accessible file format. </p>
+
+<p>I&#39;ll add a few posts in future on how I got Octopress, Github and my domain all set up and working together.</p>
+
+<p>
+  <small><a href="../../2012/02/16/moving-the-blog-to-octopress.html">→</a> posted on February 16, 2012<span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/02/13/test-automation.html">Test Automation</a>
+</h5>
+<p>Wherever possible I think that automating your testing is essential. For this project there is no way that I can manually rerun the same tests over and over again - the time commitment is just too much. I need to be able to click a button and have a framework run all my tests automatically and report back to me the number of tests passing, failing etc. I know that this won&#39;t catch all the bugs in the code and that I&#39;ll still need to do some manual testing for each release. However, the more I can push into this automated testing, the more time I&#39;ll save on the manual testing later.</p>
+
+<p>Based on my previous <a href="blog/2012/02/10/devising-my-unit-testing-philosophy/">post</a> I&#39;ve mentally divided up the code into different layers which build on top of each other. The app GUI is one layer. Then we have the model classes which in turn depend on utility classes etc. These different levels of code require different levels of testing. </p>
+
+<p>For the utility and model layers I plan to use an automated unit testing framework such as <a href="http://www.junit.org/">JUnit</a>. Xcode provides <a href="https://developer.apple.com/library/ios/#documentation/DeveloperTools/Conceptual/UnitTesting/03-Writing_Test_Case_Methods/writing_tests.html#//apple_ref/doc/uid/TP40002143-CH4-SW1">OCUnit</a> which is a JUnit like framework for implementing unit tests. This framework provides the usual fail and assert macros and functions. There are some annoying things about running unit tests in Xcode. One is that it doesn&#39;t have a separate test runner panel like JUnit has in <a href="http://www.eclipse.org/">Eclipse</a>. Instead it treats the unit test errors as build failures. All the print output for the tests is dumped into the same console output which can make it tricky to identify which output is for which test. Also there is no way to selectively run these tests. You have to rerun them all together every time. There are other frameworks out there e.g. <a href="https://github.com/gabriel/gh-unit">GHUnit</a> but for the moment I&#39;ll stick with the default. </p>
+
+<p>For the higher level GUI code, unit testing is not useful so I&#39;ll need a different testing approach and toolset. There seem to be number of <a href="http://sgleadow.github.com/blog/2011/10/26/which-automated-ios-testing-tool-to-use/">options</a> out there. I&#39;m not sure what is available and what is the best to use. Apple have an <a href="https://developer.apple.com/library/mac/documentation/developertools/conceptual/InstrumentsUserGuide/Built-InInstruments/Built-InInstruments.html#//apple_ref/doc/uid/TP40004652-CH6-SW75">Instruments</a> application which allows you do perform UI testing using Javascript. I&#39;ve also seen these <a href="http://www.testingwithfrank.com/">Frank</a> and <a href="http://www.zucchiniframework.org/">Zucchini</a> frameworks. I haven&#39;t evaluated any of these yet as I don&#39;t have a fully functional app to test it on. Once I get a nearly complete app I can see how much my unit testing provides, compare that to what I have left to test, and then make a judgement on where to go from there.</p>
+
+<p>
+  <small><a href="../../2012/02/13/test-automation.html">→</a> posted on February 13, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/02/10/devising-my-unit-testing-philosophy.html">Devising my Unit Testing Philosophy</a>
+</h5>
+<p>Up to now my approach to unit testing has been dictated by who I was writing the code for. For instance in college I never wrote unit tests. In the real world some of my employers required unit testing, with certain branch and code coverage goals, while other employers didn’t require much in the way of unit testing, as long as other types of testing were carried out. In practice I found that the as the code became more lower level, the demands for unit tests increased.</p>
+
+<p>For this project I need to define for myself what level of testing I will perform. My initial assumption was that of course I would do unit testing. Personally I thought that the benefits of unit testing were</p>
+
+<ul>
+<li>  the confidence that it gives me in my code. I know that I can call this piece of code from somewhere else and there is a high probability that it will work as intended.</li>
+<li>  by catching errors at an early stage, I spend less time in the debugger later.</li>
+<li>  refactoring should go easier as the unit tests will catch a lot of regression issues</li>
+<li>  I can be confident that any new bugs will be in the new code rather than the older highly unit tested modules, thus cutting down the amount of code required to search in order to fix the bug.</li>
+</ul>
+
+<p>However I read an interesting and thought provoking <a href="http://wilshipley.com/blog/2005/09/unit-testing-is-teh-suck-urr.html&quot;">article</a> by Will Shipley outlining why he doesn’t do unit testing. My immediate reaction was astonishment. How can you not have unit tests? However instead of unit tests, he beta tests the product. This finds the type of bugs that the actual end users will find. Also he writes his code in a manner that doesn’t require unit tests.</p>
+
+<blockquote>
+<p>My programming philosophy is “less code is better code.” Unit tests take a lot of code, and in my projects I don’t find that they find very many bugs. Part of this is because I tend not to modify my individual methods much once they’ve been written; if my “append string to string” method works, it’s really not going to get revisited anytime soon unless it has a bug.
+Part of it is because, in fact, I do do integrated testing of a form, and I probably should have talked about that more. Yes, I use “NSAssert” all over the place, and I perform sanity checks and raise errors if there’s a problem.</p>
+</blockquote>
+
+<p>I don’t think I’ve come across “Not modifying methods once they are written” before but looking at it now it makes sense. By not changing existing working methods and treating them as black boxes, we should have fewer regression errors in future. I’m not sure how to reconcile this with refactoring though - it’s something to think about. I’d imagine a coding style that favours smaller, more focused methods would be more suited to this approach.</p>
+
+<p>His use of sanity checks and asserts also struck a chord especially when he says</p>
+
+<blockquote>
+<p>Debugging most errors, once found, should take very little time in a properly-written program, because the error should always be from one of your own sanity checks, and you know where those are in the code, so you just go there and figure out what went wrong.</p>
+</blockquote>
+
+<p>This was eye-opening for me. I’ve never tracked this before so I’m not sure if the bugs I’ve written have evaded my sanity checks and asserts. I would imagine a lot of them did. I’d never have seen that as important before but looking at it now it seems to me that this is a failure on my behalf. Not catching these errors means that I’m not fully aware of how my code can go wrong and what it is doing in all cases. I think a useful analysis I should run on each bug I find is - did this escape my coding checks/asserts and if so why? I should learn from this and in future code should check for this condition.</p>
+
+<p>In a response to Will’s article, a <a href="http://www.friday.com/bbum/2005/09/24/unit-testing">follow up post</a> by bbum shows how unit testing was of great benefit on infrastructure code, in this case the <a href="http://developer.apple.com/macosx/coredata.html">Core Data</a> library. This would suggest to me that the utility and model code would be amenable to unit testing but that it’s not useful for the GUI code.</p>
+
+<p>Another <a href="http://blog.codeville.net/2009/08/24/writing-great-unit-tests-best-and-worst-practises/">article</a> on codeville challenged my assumptions that unit tests were about finding bugs. Instead the type of testing that finds bugs is manual testing or automated integration testing. According to him, unit testing is not about finding bugs (except during refactoring) but more about designing robust software components.</p>
+
+<blockquote>
+<p>TDD is a design process, not a testing process. TDD is a robust way of designing software components (“units”) interactively so that their behaviour is specified through unit tests
+Also it’s not enough to just write unit tests. The tests need to be either true unit tests which design a single component or else integration tests which automate the entire system. Anything in between are
+dirty hybrids. Unclear goal. High maintenance, don’t prove much
+Otherwise when we refactor code, we end up breaking lots of seemingly unrelated hybrid tests. If you change a unit, then its unit tests should change but no other unit tests should.</p>
+</blockquote>
+
+<p>After all that I’ve decided that I want to do some level of unit testing but I realize that I need to focus it on the right areas. I think it will be useful for the utility type code that I write but that I need to do more research into how I want to implement integration testing and UI testing.</p>
+
+<p>
+  <small><a href="../../2012/02/10/devising-my-unit-testing-philosophy.html">→</a> posted on February 10, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/02/04/objective-c-categories-and-monkey-patching.html">Objective C Categories and Monkey Patching</a>
+</h5><p>One of my favorite features of Objective C are <a href="http://developer.apple.com/library/ios/#documentation/cocoa/conceptual/objectivec/chapters/occategories.html">categories</a>. Categories allow you to add your own functionality to existing classes without the need for inheritance. You don&#39;t even need the source code of the modified class. You are only allowed add extra methods or modify existing methods. Adding extra instance variables is not permitted. This feature is generally known as <a href="http://en.wikipedia.org/wiki/Monkey_patch">monkey patching</a> (what a great name!) in languages such as Ruby.</p>
+
+<p>Creating a category is straightforward. The interface and implementation files look the same as normal interface and implementation files except the category name is placed in brackets after the name of the class we are extending. For example to create a category MyCategory on MyClass the interface file looks like</p>
+<div class="highlight"><pre class="highlight objective_c"><code><span class="cp">#import "MyClass.h"
+</span>
+<span class="k">@interface</span> <span class="nc">MyClass</span> <span class="p">(</span><span class="nl">MyCategory</span><span class="p">)</span>
+    <span class="c1">// Declare Methods here</span>
+<span class="k">@end</span>
+</code></pre></div>
+<p>and the implementation like this</p>
+<div class="highlight"><pre class="highlight objective_c"><code><span class="cp">#import "MyClass+MyCategory.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">MyClass</span> <span class="p">(</span><span class="nl">MyCategory</span><span class="p">)</span>
+    <span class="c1">// Implement methods here</span>
+<span class="k">@end</span>
+</code></pre></div>
+<p>The standard naming convention for category files is ClassToExtend+Category.(h|m). So for the above we would have both MyClass+MyCategory.h and MyClass+MyCategory.m files. The header file needs to be imported in any file that uses the category. For common extensions we can place them in the precompiled header (pch) files.</p>
+
+<p>This has a number of applications. It allows you to add methods to classes (or indeed to alter existing methods) instead of having to create utility classes comprised of static methods. Thus the code is more clearly associated with the class to which it belongs. It allows you to create object-oriented code that favours composition over inheritance.</p>
+
+<p>To give a concrete example, for my current project I wanted to be able to shuffle an array. Instead of having to create a ShuffleableArray subclass or implement an ArrayUtils.shuffle helper method, I was able to add a shuffle method to the NSArray type via a category.</p>
+
+<p>Not only does the class to which you add the category get the new method, but all its subclasses gain the method also. This can be very useful if you are extending a class high up in the hierarchy. For example, another use I made of categories was to add debug methods to the UIView class e.g. to print data about itself and its subviews. Given that lots of the UI widget classes extend UIView this means that everything on screen got my new methods. I find trace methods like these very useful during unit testing and debugging. I tend to prefer adding print code where possible rather than step through the debugger, and for that case the ability to add functionality to existing classes is invaluable.</p>
+
+<p>Naturally like all programming language features categories can be greatly abused. Changing the behaviour of existing functions can break code which assumes the older behaviour. I&#39;d imaging this would be especially so with system classes such as NSArray etc. However done right, they look like a very useful feature which I&#39;m sure I&#39;ll use a great deal.</p>
+
+<p>
+  <small><a href="../../2012/02/04/objective-c-categories-and-monkey-patching.html">→</a> posted on February  4, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/01/29/itunes-u-and-online-learning.html">iTunes U and Online Learning</a>
+</h5>
+<p>Apple have just released the <a href="http://itunes.apple.com/ie/app/itunes-u/id490217893?mt=8">iTunes U app</a>. I think this has gotten a little lost compared to the attention on the new iBooks Author and its EULA. The iTunes U app looks to be an excellent app which puts some structure on the courses that were available through iTunes. Now you can watch the videos on your iPhone and iPad, and also download the slides to them. You can also use AirPlay to stream the videos to an Apple TV and the app will sync the progress of the course between devices.</p>
+
+<p>The course I am currently looking at is the <a href="http://itunes.apple.com/ie/course/ipad-iphone-app-development/id495052415">Stanford iOS Programming course</a>. I&#39;ve only seen the first few lectures but they are of excellent quality. There are about thirty of these new iTunes U courses at present but more should be added in the future.</p>
+
+<p>While the talk was that the iBooks authoring app would revolutionize textbooks, I&#39;m hopeful that the iTunes U app will do something similar for adult education. I&#39;ve taken a few evening photography courses locally. These were great for me as a beginner but moving beyond that, it would be great to be able to subscribe to courses given by professionals. Remote learning can offer a wider range of courses than could ever be offered here in Cork. Courses that would be impractical to run locally due to small audiences don&#39;t face that problem online. Imagine if you could subscribe to a landscape photography course with lectures by a series of landscape photographers. Or Portrait. Or Sports etc. And this would all come with slides that could be viewed afterwards at any time to refresh the memory.</p>
+
+<p>Currently I&#39;m looking into Graphic Design as I will need to create graphics for my app and I would like to do a course in this. However any real life courses would most likely not be suitable for me. I would need them to run in the evenings after work. Also I want a course that assumes I have lots of experience with computers. However what I&#39;m more likely to find is a full time course aimed at school leavers which assumes no previous software experience. Remote learning offers the potential that multiple courses can be recorded, each aimed at different levels of experience. I could choose the one more suited to my circumstances and the scheduling would now not be an issue as I can do the course in my own free time.</p>
+
+<p>It&#39;s still early days but as more and more institutions put their courses up on iTunes U, I hope we start to see them not just put up their existing courses, but instead think about how they create and tailor courses for a wider audience. Although I&#39;m not sure how likely that will be as currently the app doesn&#39;t allow for paid courses. Still the free content is more than enough for the time being and I&#39;ll look forward to see where iTunes U can go in the future.</p>
+
+<p><strong>Update:</strong> Just to clarify. The iTunes U app is separate from the desktop iTunes application. You can just download the iTunes U app on your device and never have to go near iTunes.</p>
+
+<p>
+  <small><a href="../../2012/01/29/itunes-u-and-online-learning.html">→</a> posted on January 29, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/01/27/accessorizer-for-xcode.html">Accessorizer for XCode</a>
+</h5>
+<p>One thing about Objective C that struck me is the amount of boiler plate code that needs to be written for variables and methods. Ideally Xcode would handle all this but unfortunately it doesn&#39;t.</p>
+
+<p>An app I found to solve this problem is <a href="http://www.kevincallahan.org/software/accessorizer.html">Accessorizer</a>. It can generate interface and implementation for properties plus a whole range of other code (all that KVO and coding stuff that I haven&#39;t looked into yet). It&#39;s only 4 euro on the Mac App Store and it&#39;s well worth it. There are some videos tutorials on the site which show you how much can be done with the program.</p>
+
+<p>
+  <small><a href="../../2012/01/27/accessorizer-for-xcode.html">→</a> posted on January 27, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/01/26/version-control-in-xcode-using-git-and-dropbox.html">Version Control in Xcode using Git and Dropbox</a>
+</h5><p>When I first created projects in Xcode, I just let it take care of the version control for me by creating a Git local repository for my code. This was working fine for me but I could see that in future I would need more flexibility. I think it’s better to build that (and good programming habits in general) in at the start of a project when the codebase is small rather than refactoring down the line when it becomes a bigger problem.</p>
+
+<p>One issue is that the local Git repository could only be used by one computer. If I wanted to share this code I would need to switch to using remote Git repositories. I also wanted to incorporate some form of remote backup for additional security.</p>
+
+<p><a href="http://www.github.com">Github</a> (recommended to me by <a href="http://au.linkedin.com/pub/ian-hennessy/5/1b4/987">Ian Hennessy</a>) would do the job just fine but the free accounts are limited to public repositories. If I was working with other developers then it would make sense to pay for one of their plans. The collaboration tools e.g. issue tracking, code review look really good. It’s certainly a site I can see myself using in the future.</p>
+
+<p>However for someone like me who is a solo developer, these features don’t add much value. I really just needed the backup functionality. So for this, I looked at storing the repository on <a href="http://www.dropbox.com">Dropbox</a>. It’s private and the free two gigabytes should be more than enough to host my code. Also Dropbox is available on pretty much everything and works well with firewalls. As for backups, it’s bullet proof. I’ve had my Windows PC hard drive fail recently. In the past this would have been a nightmare to deal with. Now I just installed a new drive, reinstalled Dropbox and saw all my documents reappear.</p>
+
+<p>One issue that I think may arise would occur if Dropbox has conflicting edits on the same file from multiple locations. In that case I’d imagine it’s merge resolution would mess up the Git repository. Fortunately I don’t think that this will apply in this situation. I will be the only person with access to the repository and I won’t be editing the same files from two PCs at the same time.</p>
+
+<p>To set up Dropbox I followed the steps on <a href="http://www.cimgf.com/2008/06/03/version-control-makes-you-a-better-programmer/">this</a> post from cimgf.com. This <a href="http://stackoverflow.com/q/1960799/1131820">answer</a> on StackOverflow is also a good reference.</p>
+
+<ul>
+<li>  I created the project I wanted in Xcode and allowed it to set up a local Git Repository for me.</li>
+<li>  I cloned the repository using the bare keyword to a Dropbox location.
+<code>git clone –-bare . ~/Dropbox/development/repositories/GCUtils/GCUtils.git</code>
+The bare option is used as this will just clone the contents of the local .git directory to Dropbox. We don’t want to create a working copy of the code on Dropbox, as this may lead to Dropbox edit conflicts if that working copy is edited directly. In order to edit the code, a user should have to clone the repository to their machine, work on it locally and then push the changes to the Dropbox repository.</li>
+<li>  I created a remote alias.
+<code>git remote add dbGCUtils ~/Dropbox/development/repositories/GCUtils/GCUtils.git</code></li>
+<li>  I restarted Xcode and in the repositories tab of the Organizer, it picked up the remote repository automatically.</li>
+</ul>
+
+<p>And that’s pretty much it for the initial setup. From here Xcode can manage the commits to the local repository and also the push and pull from the remote repository. The Xcode user guide describes how Xcode can interact with Git <a href="http://developer.apple.com/library/mac/#documentation/ToolsLanguages/Conceptual/Xcode4UserGuide/SCM/SCM.html">here</a>.</p>
+
+<p>
+  <small><a href="../../2012/01/26/version-control-in-xcode-using-git-and-dropbox.html">→</a> posted on January 26, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/01/21/learning-objective-c.html">Learning Objective C</a>
+</h5>
+<p>Here is a list of the resources I used when learning Objective C.</p>
+
+<ul>
+<li>  <a href="http://developer.apple.com/library/ios/navigation/#section=Resource%20Types&amp;amp;topic=Getting%20Started">Apple Documentation</a>. This is really good, especially the Javadoc like pages for the UI classes. There are load of documents here. Ones that I missed first time around are the “Your First/Second/Third iOS App” guides. I’ll have to catch up on those. (One tip which I completely missed out on for ages. For these webpages, on the right hand side of the second toolbar, is a button which gets the whole doc as a PDF. It’s worth building up a library of these.) The two main documents that I used were
+
+<ul>
+<li>  <a href="http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/MobileHIG/Introduction/Introduction.html">The Human Interface Guide</a>. This is a really excellent document for describing how to design an iOS app. It’s not code based but instead operates at a higher level explaining the UI principles and how the UI elements should be used.</li>
+<li>   <a href="http://developer.apple.com/library/ios/#documentation/Cocoa/Conceptual/ObjectiveC/Introduction/introObjectiveC.html#//apple_ref/doc/uid/TP30001163">Objective C Programming Language</a>. I think this document is essential for learning Obejctive C. It details the extensions Objective C makes to the base C language and is really thorough.</li>
+</ul></li>
+<li>   <a href="http://www.stackoverflow.com&quot;">Stack Overflow</a>. This site is an absolute godsend. How did we ever live without it? The documents above are fine as an introduction to Objective C and app development. However when you start to create an app and run into practical issues, this site is fantastic. There has been no coding question that I have had that they haven’t been able to answer and the coding samples provided are normally top notch. I can’t recommend this site enough.</li>
+<li>  Google &amp; Blogs. In general searching for Objective C questions on google brings up a list of blogs which detail people’s practical implementations of various issues. These are useful to read as they normally contain any design decisions and reasons why alternatives were rejected.</li>
+</ul>
+
+<p>The main class of resources that I haven’t decided to use in learning Objective C have been books. There seem to be some good ones out there but I don’t think there’s much there that I haven’t been able to find on the web. Blogs and Stack Overflow have killed programming language books for me.</p>
+
+<p>The other thing is that I think books about specific programming languages are the ones at risk of going out of date. My data structures and pattern books from college are still useful but any Java books from then have become outdated. The core object-oriented parts are still valid but you can say goodbye to vectors, Swing etc. I’ll have to keep an eye out for good Objective C pattern books.</p>
+
+<p>To give a specific example, the ARC memory management recently introduced to Objective C has rendered the sample code in a lot of books obsolete. Not just obsolete but incorrect actually as the old code won’t compile with ARC enabled. On the web this can be updated, but the books are stuck with the older, invalid code. Maybe with ebooks becoming more popular there will be scope for having books that update their sample code automatically. Until then we have to wait for revised editions, if indeed they are released at all.</p>
+
+<p>I just found <a href="http://chachatelier.fr/programmation/fichiers/cpp-objc-en.pdf">this</a> document (via <a href="http://www.twitter.com/steipete">@steipete</a>) which is a guide from C++ to Objective C. This looks to be really good.</p>
+
+<p>
+  <small><a href="../../2012/01/21/learning-objective-c.html">→</a> posted on January 21, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/01/18/beginning-with-xcode.html">Beginning with Xcode</a>
+</h5>
+<p>The main application for developing apps is Xcode. I&#39;m not sure if there are any alternatives but at the moment I don&#39;t think I really need any. Xcode is free, installs from the app store. What more do I need?</p>
+
+<p>Ok, so first I installed Xcode. Or rather I installed an installer for Xcode. Seems a bit odd. I&#39;m not sure how that will work with updates from the Mac Store. At first glance it looked the same as most other editors. Text area for writing code, tree navigator for files etc. My initial impressions are that it should be straightforward to learn to use.</p>
+
+<p>Onto learning how to create apps. My first stop was the tutorials on Ray Wenderlich&#39;s <a href="http://www.raywenderlich.com/tutorials">site</a>. They&#39;re really comprehensive and I really recommend them. I began with the iOS Apprentice free tutorial which teaches you how to create a game called Bullseye. From that I think I gained enough knowledge to find my way around Xcode. From here, time for the next step i.e. learning Objective C.</p>
+
+<p>
+  <small><a href="../../2012/01/18/beginning-with-xcode.html">→</a> posted on January 18, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr />
+<div class="well-sm">
+  <ul class="pager">
+    <li class="previous">
+      <a href="../8/">&larr;</a>
+    </li>
+    <span class="text-center">Page 9 of 10</span>
+    <li class="next">
+      <a href="../10/">&rarr;</a>
+    </li>
+  </ul>
+</div>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="../../tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="../../tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="../../tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="../../tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

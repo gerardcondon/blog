@@ -1,0 +1,181 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9">
+          <h3>
+            Archive for Mar 18 2013
+          </h3>
+          <ul>
+            <h5>
+              <a href="18/side-project-irish-rail-tracker.html">Side Project: Irish Rail Tracker</a>
+            </h5>
+            <p>I&#39;ve been working on a <a href="http://www.gerardcondon.com/projects/irishrail/index.html">side project</a> for the last month in order to learn about front-end web development. While not complete by any means, I think it&#39;s good enough to release as a beta. I plan to add features, improve the UI and refactor the code in future.</p>
+            
+            <p>The motivation behind it was that I wanted to do a project using one of the JavaScript <a href="http://addyosmani.github.com/todomvc/">MVC Frameworks</a> - for this one I chose <a href="http://backbonejs.org">Backbone</a>. Also I&#39;ll be working more with HTML and CSS in work over the coming year and I need to ramp up on these.</p>
+            
+            <p><a href="http://www.irishrail.ie">Iarnród Éireann</a> (the Irish Rail company) has a REST API which provides details of the stations in its network and the current status of its trains. My <a href="http://www.gerardcondon.com/projects/irishrail/index.html">webpage</a> plots these stations and trains on a Google Map and shows upcoming train information for each station.</p>
+            
+            <p>I plan to write a series of posts on how I implemented this and the lessons I learned along the way.</p>
+            
+            <p>The project is available <a href="http://www.gerardcondon.com/projects/irishrail/index.html">here</a> and the code is available on <a href="https://github.com/gerardcondon/Irish-Rail-Tracker">Github</a> under the MIT licence. The roadmap.md document is where I&#39;m tracking future work that needs to be done on the project. Any feedback would be much appreciated.</p>
+            
+            <p>As far as the code goes:</p>
+            
+            <ul>
+            <li>I&#39;m happy enough with the Backbone model and collection code. The Backbone view code still needs some refactoring to remove duplication and use proper Backbone idioms. </li>
+            <li>There are some JavaScript <a href="http://pivotal.github.com/jasmine/">Jasmine</a> tests - mostly for the model. I&#39;m still figuring out the best way to test the UI - I have some Jasmine tests but also some Ruby <a href="https://github.com/jnicklas/capybara">Capybara</a> tests for the browser.</li>
+            <li>The HTML and CSS code are functional rather than elegant. I&#39;m hoping to improve these as time goes by and as I get more experience with these languages.</li>
+            </ul>
+            
+            <p>
+              <small><a href="18/side-project-irish-rail-tracker.html">→</a> posted on March 18, 2013<span class="tag-item"><small class="label label-default label-tag">projects</small></span></small>
+            </p>
+            <hr />
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="../../tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="../../tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="../../tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="../../tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

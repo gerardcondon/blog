@@ -1,0 +1,291 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h3>
+  Archive for 2016
+</h3>
+<ul>
+  <h5>
+    <a href="2016/11/20/adding-microposts-to-middleman.html">Adding microposts to Middleman</a>
+  </h5><p>I came across the idea of microblogs from Manton Reece&#39;s <a href="http://www.manton.org/tag/microblogs">blog</a>.
+The idea is that instead of just using the blog for long content, you can post short Tweet like items there also.
+Needless to say you can just use Twitter for this but it&#39;s more fun to do something unneccessarily complicated!
+I have form here - like using Octopress for a blog instead of WordPress.  </p>
+
+<p>Basically, instead of using Twitter to publish short notifications, you can post them to your own site and if necessary to the likes of Twitter from there.
+Having control of your own content gives you independence from third party sites - if Twitter shut down tomorrow then my posts would still be available here.
+If I&#39;m putting content on the web then ideally I would like it to be on my site under my own domain name.
+I&#39;ve decided to add them first to my <a href="http://www.gerardcondon.com/chess">chess</a> site and then if they work out there, try to port them to Octopress.</p>
+
+<p>That blog is written using <a href="http://www.middlemanapp.com">Middleman</a>, which has the ability to use data files.
+Any <a href="https://en.wikipedia.org/wiki/YAML">yaml</a> file in the data folder is available to the Middleman app using a <code>data.filename.foo</code> like syntax.
+This means that I can create a yaml file containing the microblog posts and then use that to generate the appropriate html pages.</p>
+
+<p>I have a microposts.yml file with each entry having text and date entries. This is sufficient for the moment but also yaml is flexible enough that I can add more attributes later.
+<code>yml
+- text: here is another post
+  date: 2016-11-19
+- text: here is a post
+  date: 2016-11-20
+</code></p>
+
+<p>I use the Middleman <a href="https://middlemanapp.com/basics/blogging/">blog extension</a> to generate the blog portion of the site.
+I want to keep using this as it handles rss, tags, archive pages, pagination etc.
+It works by generating posts from files in a source folder. In order to integrate with this, I want to generate a file per micropost in the correct location.
+Under the source folder I split out my posts into two folders <code>manual</code> and <code>automated</code>.
+I updated the regex in config.rb to handle this <code>blog.sources = &quot;posts/{type}/{year}-{month}-{day}-{title}.html&quot;</code>.
+Middleman will process these equally but now I can check what type the post is by using <code>data[&quot;type&quot;]</code>.</p>
+
+<p>In the config.rb I delete the contents of the automated folder on each build.
+I tried using <code>before_build</code> hooks but they were being called too late - the Middleman data structures were already created with the previous contents of the automated folder.
+This lead to build errors and issues with sitemaps etc.
+So I just perform the File operations directly in the config.rb. This ensurs that they are executed before the blog extension processes the posts folder.
+Then I iterate through the micropost data from the yaml file and create the appropriate file in the automated folder.</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># config.rb - Clear out automated posts folder</span>
+<span class="n">automated_posts_folder</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">config</span><span class="p">[</span><span class="ss">:source</span><span class="p">]</span><span class="si">}</span><span class="s2">/posts/automated"</span>
+<span class="no">FileUtils</span><span class="p">.</span><span class="nf">rmtree</span><span class="p">(</span><span class="n">automated_posts_folder</span><span class="p">)</span>
+<span class="no">FileUtils</span><span class="p">.</span><span class="nf">mkdir</span><span class="p">(</span><span class="n">automated_posts_folder</span><span class="p">)</span>
+
+<span class="n">post_counter</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">data</span><span class="p">.</span><span class="nf">microposts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">micropost</span><span class="o">|</span>
+  <span class="n">post_content</span> <span class="o">=</span> <span class="s2">"---</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="n">post_content</span> <span class="o">+=</span> <span class="s2">"title: mp</span><span class="si">#{</span><span class="n">post_counter</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="n">post_content</span> <span class="o">+=</span> <span class="s2">"date: </span><span class="si">#{</span><span class="n">micropost</span><span class="p">.</span><span class="nf">date</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="n">post_content</span> <span class="o">+=</span> <span class="s2">"tags: microposts</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="n">post_content</span> <span class="o">+=</span> <span class="s2">"micropost: true</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="n">post_content</span> <span class="o">+=</span> <span class="s2">"---</span><span class="se">\n</span><span class="s2">"</span>
+  <span class="n">post_content</span> <span class="o">+=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">micropost</span><span class="p">.</span><span class="nf">text</span><span class="si">}</span><span class="s2">"</span>
+
+  <span class="no">File</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">automated_posts_folder</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">micropost</span><span class="p">.</span><span class="nf">date</span><span class="si">}</span><span class="s2">-mp</span><span class="si">#{</span><span class="n">post_counter</span><span class="si">}</span><span class="s2">.html.md"</span><span class="p">,</span> <span class="n">post_content</span><span class="p">)</span>
+  <span class="n">post_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>I&#39;ve added <code>micropost: true</code> metadata to each of my generated files so that I can check if the post is a micropost using <code>if data[&quot;micropost&quot;]</code>.
+This allows me to customize how I display these posts - in particular I don&#39;t show a title for these posts.</p>
+
+<p>Speaking of titles, some special handling is required for these as the Middleman blog extension uses these for the generated html file names.
+I added an attribute <code>display_title</code> to the <code>BlogArticle</code> class which will return an empty string if the post is a micropost.
+This allows me to specify a fake title for each micropost using an incrementing ID counter.
+The blog extension can use this fake title as normal but it will never be seen by the viewer of the blog.
+Instead anywhere that a title is required in html markup I can change it to use the <code>display_title</code>  attribute.
+The fact that Ruby has open classes makes adding this very easy - I can do it in the config.rb file and don&#39;t need to go mucking about in the Blog extension code.</p>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># config.rb</span>
+<span class="k">module</span> <span class="nn">Middleman</span>
+  <span class="k">module</span> <span class="nn">Blog</span>
+    <span class="k">module</span> <span class="nn">BlogArticle</span>
+      <span class="k">def</span> <span class="nf">display_title</span>
+        <span class="n">data</span><span class="p">[</span><span class="s2">"micropost"</span><span class="p">]</span> <span class="p">?</span> <span class="s2">""</span> <span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">"title"</span><span class="p">]</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>This means that I can display these microposts just using the main text and not displaying a title. They interleave nicely with longer form blog posts.</p>
+
+<p>Using the Middleman Blog Extension means that I also get RSS integration for these posts.
+I edited the xml templates to remove the title if the post is a micropost.
+Now in my RSS reader, they show up with the body text as the title instead of the fake title needed to make the extension work.</p>
+
+<p>This current implementation is basic enough and I have a few ideas of how to improve it in future.</p>
+
+<ul>
+<li>I like the idea of the static site but the editing part is not particularly nice and is a bit of a barrier to posting. I would like to use something like <a href="https://www.contentful.com/">Contentful</a> so that I can add posts without having to open a dev environment.</li>
+<li>Once you have something like Contentful, then the next step would be to use that to trigger automatic builds once a new post is added. This would mean that the site is always updated and assuming Contentful works well from Android, would allow me to make these microposts from my phone.</li>
+<li>I could use <a href="https://ifttt.com/">IFTTT</a> to cross post the microposts to Twitter - however I would have to deal with the 140 character limit there. I would also like to automatically post a notification to Twitter when I put up a normal blog post.</li>
+<li>Currently everything is going into the same RSS feed. I would like to add separate RSS feeds e.g. micropost only, normal post only. I think this would also help with using IFTTT to post to Twitter.</li>
+<li>One nice consequence of using the Middleman data files is that there is a much better separation of content from markup. I would like to expand this to also apply to full blog posts. Ideally everything content related would come from the data files. Then I have more options as to how to generate those data files e.g. Contentful for the tweets or a Rails app for the pgn files.</li>
+</ul>
+
+  <p>
+    <small><a href="2016/11/20/adding-microposts-to-middleman.html">→</a> posted on November 20, 2016<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2016/11/20/fixing-octopress-2-dot-0-to-work-with-jquery.html">Fixing Octopress 2.0 to work with JQuery</a>
+  </h5><p>After updating the site to add <a href="www.jquery.com">JQuery</a>, I noticed that the Github aside and the sidebar toggle no longer worked.</p>
+
+<p>Opening up the console I saw the following errors
+    TypeError: Object 0 has no method ‘charAt’
+and for the <a href="www.github.com">Github</a> plugin
+    <code>Method JSONP is not allowed by Access-Control-Allow-Methods</code></p>
+
+<p>Googling for these lead me to Daniel Hilgarth&#39;s blog where he has two posts on how to solve the <a href="http://blog.fire-development.com/2013/03/06/fixing-octopress-when-using-jquery/">charAt</a> and <a href="http://blog.fire-development.com/2013/03/05/fixing-octopress-github-plugin-when-using-jquery/">jsonp</a> issues.</p>
+
+  <p>
+    <small><a href="2016/11/20/fixing-octopress-2-dot-0-to-work-with-jquery.html">→</a> posted on November 20, 2016<span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="2016/11/09/fixing-twitter-sidebar-for-octopress-2-dot-x.html">Fixing Twitter sidebar for Octopress 2.x</a>
+  </h5><p>I noticed recently that the Octopress Twitter plugin for my sidebar was broken.
+The reason is that Twitter no longer supports the APIs that the plugin accesses.
+Instead now they have a <a href="https://publish.twitter.com/#">widget page</a> to generate html code that will embed a list of your tweets on your page.</p>
+
+<p>I created a widget for myself and customised it by adding the <code>nofooter transparent noheader</code> attributes to <code>data-chrome</code>.
+These remove various headings and background colouring so that it blends in with the site a bit more.</p>
+
+<p>To add this to an Octopress site, you replace the code in <code>source/_includes/asides/twitter.html</code> with this new code.
+I also added a follow button which displays a Twitter formatted follow button and a count of your subscribers.</p>
+
+<p>The full code is as follows</p>
+<div class="highlight"><pre class="highlight html"><code><span class="c">&lt;!-- source/_includes/asides/twitter.html --&gt;</span>
+{% if site.twitter_user %}
+<span class="nt">&lt;section&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Latest Tweets<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"twitter-timeline"</span> <span class="na">data-chrome=</span><span class="s">"nofooter transparent noheader"</span> <span class="na">data-tweet-limit=</span><span class="s">"5"</span> <span class="na">href=</span><span class="s">"https://twitter.com/gercondon"</span><span class="nt">&gt;</span>Tweets by gercondon<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"//platform.twitter.com/widgets.js"</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"twitter-follow-button"</span> <span class="na">href=</span><span class="s">"https://twitter.com/gercondon"</span><span class="nt">&gt;</span>Follow @gercondon<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/section&gt;</span> 
+{% endif %}
+</code></pre></div>
+  <p>
+    <small><a href="2016/11/09/fixing-twitter-sidebar-for-octopress-2-dot-x.html">→</a> posted on November  9, 2016<span class="tag-item"><small class="label label-default label-tag">development</small></span><span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+  </p>
+  <hr />
+</ul>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

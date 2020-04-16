@@ -1,0 +1,200 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9">
+          <h3>
+            Archive for Feb 17 2012
+          </h3>
+          <ul>
+            <h5>
+              <a href="17/adding-code-coverage-to-unit-tests.html">Adding Code Coverage to Unit Tests for Xcode 4.2</a>
+            </h5>
+            <p>If you are going to the effort of having unit tests, then you really need to have code coverage. This will allow you to ensure that your tests are exercising all your code. It is really easy to spot a missing test when you see a branch of an if-else with no coverage. Code coverage for me is also a way to motivate myself to implement the tests. It&#39;s like high scores in games - it gives me a target to aim for. Coverage gives feedback that your tests are actually doing something, and with each test you add, you can see the areas of untested code steadily decrease.</p>
+            
+            <p>To set up code coverage in Xcode 4.2 I used the guide on these blogs - <a href="http://www.infinite-loop.dk/blog/2011/05/covering-it-all-up/">Infinite Loop</a> and <a href="http://mattrajca.com/post/8749868513/llvm-code-coverage-and-xcode-4">Matt Rajca</a>. Originally only the gcc compiler was supported but since then the Clang compiler has had code coverage enabled. This is important as we need to use Clang for ARC and static analysis among other things. </p>
+            
+            <p><strong>XCode Build Settings</strong></p>
+            
+            <p>Xcode has the concept of build configurations which can have built settings altered independently of each other. The two default configurations are Debug and Release. We want to add a new configuration named Coverage. To do this duplicate the Debug configuration. </p>
+            
+            <p>{% img /images/codeCoverage/NewBuildConfig.png New Build Configuration %}</p>
+            
+            <p>In order to specify different settings for configurations in Xcode, hover over the left hand margin directly to the left of the setting we wish to update. An arrow will appear which when clicked will expand to an additional three lines for Debug, Coverage and Release. Editing the top line will alter the setting for all versions. Altering either of the new lines will only update the setting for that version of the build.</p>
+            
+            <p>{% img /images/codeCoverage/BuildSettings.png Build Settings %}</p>
+            
+            <ul>
+            <li>  Open the Build Settings tab for the main target. Under &quot;Apple LLVM 3.0 compiler - Code Generation&quot;, enable both
+            
+            <ul>
+            <li>  &quot;Generate Test Coverage Files&quot;</li>
+            <li>   &quot;Instrument Program Flow&quot;</li>
+            </ul></li>
+            <li>   We now need to add the libprofile<em>rt library to the build. This will link in the implementations of the coverage functions. If you are seeing link errors like &quot;</em>llvm<em>gcda</em>increment<em>indirect</em>counter&quot;, referenced from:&quot;, then you have not done this step.<br>
+            This library is located in /Developer/usr/lib. This folder contains libprofile.a which is a static library and a libprofile.dylib which is a dynamic linked library (similar to a .dll in Windows). To link this open the Build Phases tab for the main target. Expand the &quot;Link Binary with Libraries&quot; and click the + button. Click &quot;Add Other&quot; and then find libprofile_rt.dylib in the file viewer and add it. (Note that this doesn&#39;t work for me since Xcode 4.3. I&#39;ve documented the updates I needed to make <a href="http://www.gerardcondon.com/blog/2012/02/21/code-coverage-updates-for-xcode-4-dot-3/">here</a>).</li>
+            </ul>
+            
+            <p><strong>Executing Tests</strong></p>
+            
+            <p>Now your unit tests should run and if you examine the build output files under the DerivedData folder you should find .gcda and .gcno coverage files along with your .o files. To find this folder you can go to the Projects tab in the Organizer and select your project. The path to the Derived Data folder is listed here along with an arrow which will open the folder in the Finder. </p>
+            
+            <p>{% img /images/codeCoverage/DerivedData.png Derived Data %}</p>
+            
+            <p>From here the path to the coverage files is Build/Intermediates/${Project Target}.build/Coverage-iphonesimulator/${Project Target}.build/Objects-normal/i386. Replace ${Project Target} with the name of your project target.</p>
+            
+            <p><strong>Viewing Coverage Data</strong></p>
+            
+            <p>To view the coverage data I used <a href="http://code.google.com/p/coverstory/">CoverStory</a>. Simply open the app and point it at the coverage folder. This will give a nice two pane display showing your files on the left and an editor which shows how often each line of code was hit. Now you can identify untested code and add new tests to cover them.</p>
+            
+            <p>
+              <small><a href="17/adding-code-coverage-to-unit-tests.html">→</a> posted on February 17, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+            </p>
+            <hr />
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="../../tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="../../tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="../../tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="../../tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

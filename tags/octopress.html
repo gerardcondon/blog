@@ -1,0 +1,299 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h3>
+  Articles tagged 'octopress'
+</h3>
+<ul>
+  <h5>
+    <a href="../2016/11/20/fixing-octopress-2-dot-0-to-work-with-jquery.html">Fixing Octopress 2.0 to work with JQuery</a>
+  </h5><p>After updating the site to add <a href="www.jquery.com">JQuery</a>, I noticed that the Github aside and the sidebar toggle no longer worked.</p>
+
+<p>Opening up the console I saw the following errors
+    TypeError: Object 0 has no method ‘charAt’
+and for the <a href="www.github.com">Github</a> plugin
+    <code>Method JSONP is not allowed by Access-Control-Allow-Methods</code></p>
+
+<p>Googling for these lead me to Daniel Hilgarth&#39;s blog where he has two posts on how to solve the <a href="http://blog.fire-development.com/2013/03/06/fixing-octopress-when-using-jquery/">charAt</a> and <a href="http://blog.fire-development.com/2013/03/05/fixing-octopress-github-plugin-when-using-jquery/">jsonp</a> issues.</p>
+
+  <p>
+    <small><a href="../2016/11/20/fixing-octopress-2-dot-0-to-work-with-jquery.html">→</a> posted on November 20, 2016<span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="../2016/11/09/fixing-twitter-sidebar-for-octopress-2-dot-x.html">Fixing Twitter sidebar for Octopress 2.x</a>
+  </h5><p>I noticed recently that the Octopress Twitter plugin for my sidebar was broken.
+The reason is that Twitter no longer supports the APIs that the plugin accesses.
+Instead now they have a <a href="https://publish.twitter.com/#">widget page</a> to generate html code that will embed a list of your tweets on your page.</p>
+
+<p>I created a widget for myself and customised it by adding the <code>nofooter transparent noheader</code> attributes to <code>data-chrome</code>.
+These remove various headings and background colouring so that it blends in with the site a bit more.</p>
+
+<p>To add this to an Octopress site, you replace the code in <code>source/_includes/asides/twitter.html</code> with this new code.
+I also added a follow button which displays a Twitter formatted follow button and a count of your subscribers.</p>
+
+<p>The full code is as follows</p>
+<div class="highlight"><pre class="highlight html"><code><span class="c">&lt;!-- source/_includes/asides/twitter.html --&gt;</span>
+{% if site.twitter_user %}
+<span class="nt">&lt;section&gt;</span>
+  <span class="nt">&lt;h1&gt;</span>Latest Tweets<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"twitter-timeline"</span> <span class="na">data-chrome=</span><span class="s">"nofooter transparent noheader"</span> <span class="na">data-tweet-limit=</span><span class="s">"5"</span> <span class="na">href=</span><span class="s">"https://twitter.com/gercondon"</span><span class="nt">&gt;</span>Tweets by gercondon<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"//platform.twitter.com/widgets.js"</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"twitter-follow-button"</span> <span class="na">href=</span><span class="s">"https://twitter.com/gercondon"</span><span class="nt">&gt;</span>Follow @gercondon<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;/section&gt;</span> 
+{% endif %}
+</code></pre></div>
+  <p>
+    <small><a href="../2016/11/09/fixing-twitter-sidebar-for-octopress-2-dot-x.html">→</a> posted on November  9, 2016<span class="tag-item"><small class="label label-default label-tag">development</small></span><span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="../2012/03/04/setting-up-octopress-and-github.html">Setting up a Blog on Octopress and Github</a>
+  </h5><p>This post documents how I migrated the blog from <a href="http://www.wordpress.com">Wordpress.com</a> to <a href="http://www.octopress.org">Octopress</a>. There are a number of bloggers who have written about switching their blogs to Octopress. I found these posts very helpful - <a href="http://scottmuc.com/migrated-to-octopress/">Scott Muc</a>, <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">Matt Gemmell</a> and <a href="http://blog.bigdinosaur.org/setting-up-octopress/">Bigdinosaur Blog</a>. The basic sequence of steps I followed was</p>
+
+<ul>
+<li>Install Ruby.</li>
+<li>Install Octopress.</li>
+<li>Create account on <a href="http://www.github.com">Github</a>.</li>
+<li>Export previous blog from Wordpress and convert it to Markdown</li>
+<li>Generate Octopress blog and publish it to Github.</li>
+<li>In parallel I registered www.gerardcondon.com and set it up so that it pointed to the blog on Github.</li>
+<li>Setup a drafts folder on Dropbox so that I can write posts from anywhere.</li>
+</ul>
+
+<p><strong>Ruby Setup</strong></p>
+
+<p>The first step is to install <a href="http://www.ruby-lang.org/en/">Ruby</a>. If you want to, you can compile this from the source but the better option is to use a third party tool to install and manage Ruby. The one I used is <a href="https://rvm.beginrescueend.com/rvm/install/">RVM</a>. </p>
+
+<p>By default OS X Lion comes with 1.8.7 pre-installed but Octopress needs 1.9.2. (I tried 1.9.3 at first but Octopress reported an error). I read on Stack Overflow that it&#39;s not recommended to upgrade the default installation but instead to install the newer version alongside it. RVM is designed to manage multiple versions of Ruby on a system so it&#39;s a nice fit here.</p>
+
+<p>The command to install Ruby is <code>rvm install 1.9.2</code>. However when I tried this I got errors complaining that the C compiler was LLVM based instead of gcc. To get around this I added the following flag <code>rvm install 1.9.2 --with-gcc=clang</code>. Now we can tell RVM to use version 1.9.2 with this command <code>rvm use 1.9.2</code>.</p>
+
+<p><strong>Install Octopress</strong></p>
+
+<p>Installing Octopress is very easy once Ruby is installed. The instructions can be found at <a href="http://octopress.org/docs/setup/">Octopress Setup</a>. The install command is <code>rake install</code> and then to build your website run <code>rake generate</code>. Octopress takes whatever pages and posts it finds under the source folder and builds these to a static website. These need to have particular file names and contents, so Octopress provides helper commands to generate a new post or page. These are <code>rake new_page[&quot;page_title&quot;]</code> and <code>rake new_post[&quot;post_title&quot;]</code> respectively.</p>
+
+<p><strong>Export from Wordpress</strong></p>
+
+<p>To export from Wordpress I simply used their export tool. This exported all the posts in their own html files. This would have been fine for Octopress but I wanted the whole site in Markdown, so I converted each post from html to markdown and added to the source/_posts folder.</p>
+
+<p><strong>Host on Github</strong></p>
+
+<p>Once you have the Octopress blog created you need to host it somewhere. I choose Github as it provides for free hosting of static blogs. Also if I do release some iOS code later it will be on Github, so there&#39;s no harm in getting it set up now. </p>
+
+<p>This <a href="http://code.dblock.org/octopress-setting-up-a-blog-and-contributing-to-an-existing-one">site</a> has a very good explanation of what is going on with Github. Basically we build our website locally to a folder named public. We create a repository on Github for our webpage. Octopress then uploads the contents of the public folder to the master branch on this repository whenever we run the <code>rake deploy</code> command. It is recommended that you upload the site source to a source branch on the repository. That way you can always regenerate the website even if you delete the local files.</p>
+
+<p><strong>Register URL</strong></p>
+
+<p>I decided to register www.gerardcondon.com for this site as I didn&#39;t want to be tied to a Github url in the same way as I was tied to the Wordpress.com one. I didn&#39;t need hosting or anything special - just forwarding. I used <a href="http://www.namecheap.com">Namecheap</a>. The price is really cheap for a .com address - only 6 or 7 dollars a year. </p>
+
+<p>There are instructions on <a href="http://pages.github.com">Github Pages</a> on how to set up the forwarding. You need to setup an A record to redirect to www.github.com for your url without the www part, i.e. gerardcondon.com will redirect to www.github.com. Then you need to create a CNAME file in github and then setup a CNAME redirect for the www part of the url, i.e. www.gerardcondon.com redirects to gerardcondon.github.com. However I ran into some problems doing this on the namecheap site. When I tried to setup the CNAME I got the following errors</p>
+
+<p><code>Improper records were NOT saved!</code></p>
+
+<p><code>There were issues with some records and they were either set to default or completely removed. Please review the issues below and update again appropriately.</code></p>
+
+<p><code>INVALID_ADDR: &#39;gerardcondon.github.com/&#39; should not be an IP/ URL for CNAME record. (host name: www)</code></p>
+
+<p>However I just connected to the online chat support and the person assigned to me fixed it up in a few minutes - I have to say they were really helpful. This DNS stuff takes a while to settle down - I think it was a day or so before it had propagated out. Since then I&#39;ve had no trouble with it.</p>
+
+<p><strong>Octopress tweaks</strong></p>
+
+<p>I&#39;ve made a few tweaks to Octopress to suit my own tastes. </p>
+
+<ul>
+<li>I changed the indented-lists setting to true in sass/custom/_layout.scss. Previously the numbers and bullets for lists were not in line with the rest of the post text but instead were placed in the left margin. </li>
+<li>I reduced the size of the blockquotes in the sass/base/_typography.scss file, from 1.2 em down to 1 em to be the same size as normal text.</li>
+<li>I changed the solarized theme from dark to light in sass/base/_solarized.scss.</li>
+</ul>
+
+<p>It&#39;s really easy to make changes to Octopress, there is a folder called sass with most of the style stuff. There are a few configuration files also which can be updated. One nice thing about checking all this stuff into github is that you can go back and see what style updates you made in previous commits.</p>
+
+<p><strong>Add Draft folder and sync with Dropbox</strong></p>
+
+<p>At this stage Octopress was installed on my Macbook Air and working perfectly for me. One limitation of this setup was that I could only edit posts from that machine. I didn&#39;t mind only being able to regenerate the site from the Air as that&#39;s not a common task, but I wanted to be able to write posts from anywhere. I also wanted the ability to write draft posts and not have Octopress automatically publish those.</p>
+
+<p>I found a technique for managing draft posts on <a href="http://www.i-m-code.com/blog/blog/2012/01/25/target-any-deployment-environment-in-octopress-with-ease/">Frozen Bytes</a>. This allows you to create a drafts folder and provides commands for moving posts between the draft and published state.</p>
+
+<p>Using this, I created a folder called drafts in Dropbox. I then symlinked to this from inside the sources directory on the Air. All my drafts are now available in Dropbox and I can edit these anywhere. This is especially useful when editing from iOS as there are a number of markdown editors which can edit files on Dropbox.</p>
+
+<p><strong>Summary</strong></p>
+
+<p>I think that&#39;s everything! It was fairly straightforward in retrospect to set up. The new setup works really well. I&#39;m very happy with the look of Octopress and the editing workflow in markdown is much better than using the Wordpress editor. Looking forward to using it in future.</p>
+
+  <p>
+    <small><a href="../2012/03/04/setting-up-octopress-and-github.html">→</a> posted on March  4, 2012<span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="../2012/02/16/moving-the-blog-to-octopress.html">Moving the blog to Octopress</a>
+  </h5>
+  <p>I&#39;ve decided to switch the blog from <a href="http://www.wordpress.com">Wordpress.com</a> to an <a href="http://www.octopress.org">Octopress</a> site hosted on <a href="http://pages.github.com">Github Pages</a>. From now on there will be no more new posts on Wordpress. I&#39;ve also registered the domain <a href="http://www.gerardcondon.com">gerardcondon.com</a> and will be using this address for the blog in future. </p>
+  
+  <p>I have a few reasons for switching</p>
+  
+  <ul>
+  <li><p>I found Wordpress.com to be an excellent site in general. When starting off it was very easy to create and get the blog up and running. However you have to use their site to create your posts. Even if you use a text editor you still ultimately have to paste the post into their site, and all subsequent edits have to be done through Wordpress.com. Also the definitive version of the posts are stored in their database. </p>
+  
+  <p>I prefer to write my documents in plain text files using a markup language. Previously I&#39;ve used <a href="http://www.latex-project.org/">Latex</a> and more recently I&#39;ve started using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. This has a number of advantages, namely the files can be edited in any editor on any platform and they work very well with source control. Also by separating the content from the typesetting phase, I find that you concentrate better on the actual writing. I hate having to wrestle with formatting in Word; I much prefer leaving that to a program. Donald Knuth &amp; Co. have forgotten more about typesetting than I will ever know.</p>
+  
+  <p>Wordpress.com doesn&#39;t support Markdown so posting involved an extra step of converting the Markdown to HTML. This meant that I had two versions of the blog. One in Markdown on my local machine and another in HTML on Wordpress. For me, it&#39;s an axiom that whenever you have two versions of the same data, they will get out of sync. One needs to be the main source. I wanted the local Markdown version to be the canonical version of the site and everything else derived from that.</p></li>
+  <li><p>I think the default Octopress theme looks really good (I really like the Archive page). I first noticed it on <a href="http://www.mattgemmell.com">Matt Gemmell&#39;s</a> site and was impressed by how it looked. It also looks well on mobile sites. I have full control of the css using Octopress so I can tweak whatever I want. I liked the <a href="http://theme.wordpress.com/themes/titan/">Titan</a> theme on Wordpress except I hated the crosses using for lists. On Wordpress.com there was no way to change these. However on Octopress I make any kind of style update.</p></li>
+  <li><p>I realised that I should get my own domain name instead of using the Wordpress.com address. In future if I need to move my site I can just redirect the domain name and any old links will still work. Whereas I will never own or control the gerardcondon.wordpress.com links. It&#39;s better to move now, rather than after I create lots of content at a non portable url. Start as you mean to go on.</p></li>
+  </ul>
+  
+  <p>The posting workflow is much better now. I write my posts in Markdown on the Mac or on iOS via <a href="http://www.hogbaysoftware.com/products/writeroom">WriteRoom</a>. Then I run a command from the terminal to regenerate the site and deploy it to Github. Edits work in the same way. The Markdown files also get committed to Github ensuring that no matter where I move the blog in future I will always have the content in an accessible file format. </p>
+  
+  <p>I&#39;ll add a few posts in future on how I got Octopress, Github and my domain all set up and working together.</p>
+  
+  <p>
+    <small><a href="../2012/02/16/moving-the-blog-to-octopress.html">→</a> posted on February 16, 2012<span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+  </p>
+  <hr />
+</ul>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

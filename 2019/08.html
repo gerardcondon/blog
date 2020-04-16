@@ -1,0 +1,214 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h3>
+  Archive for Aug 2019
+</h3>
+<ul>
+  <h5>
+    <a href="08/05/python-and-midi.html">Python and Midi</a>
+  </h5>
+  <p>Following on from getting midi working on my pc, I wanted to look at programming options for it.
+  Python seemed a decent candidate to start with - a scripting language with a sizable community, so there was bound to be existing libraries for it.
+  I found <a href="http://trac.chrisarndt.de/code/wiki/python-rtmidi">python-rtmidi</a> and decided to give it a go. It installs the C++ RtMidi classes and a Python wrapper around them.</p>
+  
+  <p>I initially installed it into my WSL installation of Ubuntu. 
+  However that didn&#39;t work - it couldn&#39;t see the native Windows midi device drivers.
+  There is probably a way to fix that but I didn&#39;t want to waste much time on it until I has proven that the Python/Midi combo worked at all on Windows.</p>
+  
+  <p>So I installed Python natively on Windows along with Pip.
+  After installing the python-rtmidi package I ran some of the test scripts and it worked straight away.
+  It was able to send sounds to the keyboard to play and also read from the keyboard what keys were being pressed.
+  It was good fun and would seem to me to be a great way to introduce kids who are musically inclined to programming.</p>
+  
+  <p>
+    <small><a href="08/05/python-and-midi.html">→</a> posted on August  5, 2019<span class="tag-item"><small class="label label-default label-tag">music</small></span></small>
+  </p>
+  <hr /><p>In order to test my static site before I push it, I need to run <code>middleman server</code> to test it out. On Codenvy the port won&#39;t be exposed by default so you will need to <a href="https://codenvy.com/docs/user-guide/previews/index.html#servers-in-user-dashboard">add a server</a> for the port</p>
+
+  <p>
+    <small><a href="08/05/mp11.html">→</a> posted on August  5, 2019<span class="tag-item"><small class="label label-default label-tag">microposts</small></span></small>
+  </p>
+  <hr />
+  <p>Had problems with Github on <a href="https://codenvy.io">Codenvy</a> where it wouldn&#39;t connect to the server. I had to force it to connect over https to fix the issue. See <a href="https://help.github.com/en/articles/using-ssh-over-the-https-port">this page</a> for instructions.</p>
+  
+  <p>
+    <small><a href="08/04/mp10.html">→</a> posted on August  4, 2019<span class="tag-item"><small class="label label-default label-tag">microposts</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="08/03/Corn-Domhanda-Fortnite.html">Fortnite agus an Corn Domhanda</a>
+  </h5>
+  <p>Ba é an Corn Domhanda Fortnite ocáid an-suimiúil.
+  Is é cluiche an difriúil ar an leibheál sin ná nuair a bhíonn na h-imreoirí ag imirt ar a gcraoltaí féin.
+  Tá an scil agus an déine i bhfad níos airde agus mar sin i bhfad níos siamsúla</p>
+  
+  <p>Chun comparáid a dhéanamh idir na dhá shocruithe. Nuair a bhíonn seasca imreoirí fágtha sa Corn Domhanda bhí an crios lán le himreoirí agus bhí neart foirgníocht, straitéis ann. Bhí gá le bearta iontacha chun deireadh a chur leo.
+  I gcomparáid leis na gnáthchraoltaí ina bhfuil an t-imreoir fós ag teacht trasna daoine scoite amach gan ach deich imreoir fágtha.
+  Ní mór do Epic bealach a fháil chun na himreoirí is fearr a imirt níos minice i gcoinne a chéile.</p>
+  
+  <p><button class="btn btn-default btn-xs" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    English
+  </button>
+  <div class="collapse" id="collapseExample">
+  The Fortnite World Cup was really entertaining. 
+  The game at that level is so much different than watching the players play arena on their normal streams.
+  The skill and intensity is way higher and much more entertaining as a result.</p>
+  
+  <p>Compare the setups with 60 players left in the World Cup - zone was packed with players - there was loads of building, strategy. Great fight tactics were needed to get eliminations.
+  Versus the normal streams where the streamers are still picking off random stragglers with only 10 players left.
+  Epic need to find a way to get the top players playing against each other more often.
+  </div></p>
+  
+  <p>
+    <small><a href="08/03/Corn-Domhanda-Fortnite.html">→</a> posted on August  3, 2019<span class="tag-item"><small class="label label-default label-tag">fortnite</small></span></small>
+  </p>
+  <hr />
+</ul>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="../tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="../tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="../tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="../tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="../tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="../tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="../tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="../tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="../tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="../tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="../tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="../tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="../tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="../tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="../tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="../tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="../tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog</title>
+  <subtitle>Personal Blog and Website</subtitle>
+  <id>https://www.gerardcondon.com</id>
+  <link href="https://www.gerardcondon.com"/>
+  <link href="https://www.gerardcondon.com/atom.xml" rel="self"/>
+  <updated>2020-04-16T08:00:00Z</updated>
+  <author>
+    <name>Gerard Condon</name>
+  </author>
+  <entry>
+    <title>Relearning Irish</title>
+    <link rel="alternate" href="https://www.gerardcondon.com/2020/04/16/Relearning-Irish.html"/>
+    <id>https://www.gerardcondon.com/2020/04/16/Relearning-Irish.html</id>
+    <published>2020-04-16T08:00:00Z</published>
+    <updated>2020-04-16T15:21:30+00:00</updated>
+    <author>
+      <name>Gerard Condon</name>
+    </author>
+    <content type="html">&lt;p&gt;Since going back to relearn Irish I&amp;#39;ve started to look at what books are out there. I think there&amp;#39;s a much better selection now than there was when I left school. I see a lot of translations that I don&amp;#39;t think were available back then. For example, I bought the Hobbit, Game of Thrones for myself and for the kids I bought Harry Potter, Diary of the Wimpy Kid, even a Famous Five book. Admittedly a lot of those books have come out since I did my Leaving Cert but even then I don&amp;#39;t think you could have found a single translation of a book I was reading in English. I think it&amp;#39;s a great trend and hopefully it will continue.&lt;/p&gt;
+
+&lt;p&gt;When I was in school I used to hate the types of Irish books they made us read - the likes of A Thig Ná Thit Orm. I appreciate that they probably have great meaning and relevance to people in the Gaeltacht but they never connected with me. We had to read books in English also that I never would read outside of the exam but there was still this massive world of books outside of the approved classics that I could access in my own time. For example, I was reading lots science fiction/fantasy books in English but there was nothing like that to expand my horizons in Irish. &lt;/p&gt;
+
+&lt;p&gt;There was nothing in Irish to draw me into reading those after the exam. I&amp;#39;d hope that the curriculum now is more focused towards books that will spark a lifelong interest in reading in Irish rather than &amp;quot;classics&amp;quot;. There&amp;#39;s no point in teaching Irish for the Leaving Certificate - it has to be for life.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>FFX Links</title>
+    <link rel="alternate" href="https://www.gerardcondon.com/2020/04/03/ffx-links.html"/>
+    <id>https://www.gerardcondon.com/2020/04/03/ffx-links.html</id>
+    <published>2020-04-03T00:01:00Z</published>
+    <updated>2020-04-16T15:21:30+00:00</updated>
+    <author>
+      <name>Gerard Condon</name>
+    </author>
+    <content type="html">&lt;p&gt;Some miscellaneous links for Final Fantasy X&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#"&gt;Speedrun video from ESA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;GameFAQ &lt;a href="https://gamefaqs.gamespot.com/ps2/197344-final-fantasy-x/faqs/"&gt;page&lt;/a&gt; for the game.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gamefaqs.gamespot.com/boards/197344-final-fantasy-x/60664287"&gt;Best order&lt;/a&gt; for endgame content.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gamefaqs.gamespot.com/ps2/197344-final-fantasy-x/faqs/23329"&gt;Huge FAQ&lt;/a&gt; covering the game in general&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gamefaqs.gamespot.com/ps2/197344-final-fantasy-x/faqs/15294"&gt;Monster Arena FAQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Chocobo racing &lt;a href="https://web.archive.org/web/20030329224742/http://home.san.rr.com/circe/ultimania_remiem.jpg"&gt;map&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://jegged.com/Games/Final-Fantasy-X/"&gt;Jegged&lt;/a&gt; FAQs&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Setting up a static site with basic web authentication</title>
+    <link rel="alternate" href="https://www.gerardcondon.com/2020/04/02/bare-minimum-heroku-site.html"/>
+    <id>https://www.gerardcondon.com/2020/04/02/bare-minimum-heroku-site.html</id>
+    <published>2020-04-02T18:00:00Z</published>
+    <updated>2020-04-16T15:21:30+00:00</updated>
+    <author>
+      <name>Gerard Condon</name>
+    </author>
+    <content type="html">&lt;p&gt;Moving on from my initial Heroku experiment, I removed the Jekyll site and now have the bare minimum required for hosting content requiring authentication on Heroku&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new Heroku app&lt;/li&gt;
+&lt;li&gt;Add the [static site buildpack]&lt;/li&gt;
+&lt;li&gt;Create a folder (I called mine static) and create a file called &lt;code&gt;static.json&lt;/code&gt; with the following contents
+&lt;code&gt;
+{
+&amp;quot;clean_urls&amp;quot;: true,
+&amp;quot;https_only&amp;quot;: true,
+&amp;quot;root&amp;quot;: &amp;quot;static/&amp;quot;,
+&amp;quot;basic_auth&amp;quot;: true
+}
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set two environment variables &lt;code&gt;BASIC_AUTH_USERNAME&lt;/code&gt; and &lt;code&gt;BASIC_AUTH_PASSWORD&lt;/code&gt; - make sure that the value of password is readable by htpasswd e.g. &lt;code&gt;openssl passwd -apr1 &amp;lt;password_plaintext&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy whatever content you are going to host into the &lt;code&gt;static&lt;/code&gt; folder, add this to git and push to heroku using &lt;code&gt;git push heroku master&lt;/code&gt; (Heroku will have set up that remote when creating the app). When regenerating the site this is the only step you will need to rerun.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I have a lot of Gitbook content which I will need to add to the site - for now I am manually building the books and copying them into the &lt;code&gt;static&lt;/code&gt; folder. Next step will be to script that.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title></title>
+    <link rel="alternate" href="https://www.gerardcondon.com/2020/04/02/mp24.html"/>
+    <id>https://www.gerardcondon.com/2020/04/02/mp24.html</id>
+    <published>2020-04-02T00:00:00Z</published>
+    <updated>2020-04-02T00:00:00Z</updated>
+    <author>
+      <name>Gerard Condon</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="https://andybrewer.github.io/mvp/"&gt;MVP.css&lt;/a&gt; is a great site for adding formatting to simple webpages. You can just implement the site in pure html and it will look really good. This was really useful for websites that my son created during &lt;a href="https://coderdojo.com/"&gt;Coder Dojo&lt;/a&gt; as it made them look good with no effort.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title></title>
+    <link rel="alternate" href="https://www.gerardcondon.com/2020/03/31/mp23.html"/>
+    <id>https://www.gerardcondon.com/2020/03/31/mp23.html</id>
+    <published>2020-03-31T00:00:00Z</published>
+    <updated>2020-03-31T00:00:00Z</updated>
+    <author>
+      <name>Gerard Condon</name>
+    </author>
+    <content type="html">&lt;p&gt;Ah FFX. Forgot about this. It has an optional part of the first dungeon that is necessary to unlock a summon. Didn&amp;#39;t realise this until past that part. No problem I can just go back right - no, only at a certain stage of the game. Well that&amp;#39;s not too bad - and we&amp;#39;ve placed a really hard boss with 800K HP blocking it. Ah feck. Made the same mistake on the PS2 when it first came out.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title></title>
+    <link rel="alternate" href="https://www.gerardcondon.com/2020/03/30/mp22.html"/>
+    <id>https://www.gerardcondon.com/2020/03/30/mp22.html</id>
+    <published>2020-03-30T00:00:00Z</published>
+    <updated>2020-03-30T00:00:00Z</updated>
+    <author>
+      <name>Gerard Condon</name>
+    </author>
+    <content type="html">&lt;p&gt;Final Fantasy X on the Vita is excellent. Real pity that there&amp;#39;s not a Sony handheld that can play all PS2 games and not just selected remastered versions like this one.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

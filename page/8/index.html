@@ -1,0 +1,440 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h5>
+  <a href="../../2012/09/16/setting-up-jenkins-on-os-x.html">Setting up Jenkins on OS X</a>
+</h5><p>First post in a long time. I didn&#39;t really do much iOS development over the summer and am only starting to get back into it in the past few weeks. I have some draft posts on my dealings with both Core Data and UITableViews and once those features are complete I&#39;ll post them.</p>
+
+<p>Along with coding, I&#39;ve been looking at adding some build infrastructure for my projects. Having seen <a href="http://jenkins-ci.org/">Jenkins</a> used at work, I wanted to get a CI system set up for my builds here at home. I want to use it to kick off a build, run the tests and package up the iPhone app. By using something like Jenkins I can automate my build and testing process and also have a record of previous builds.</p>
+
+<p><strong>Jenkins Install</strong></p>
+
+<p>The first step was to install Jenkins. They provide a Mac installer - the only annoyance is that it triggers the new OS X Gatekeeper dialog blocking unsigned apps from installing. Then I loaded locahost:8080 in my browser to find that Jenkins wasn&#39;t loading and there was no error message telling me what went wrong. D&#39;oh. The issue is that Jenkins requires Java to run but it isn&#39;t installed by default on OS X. To install simply type <code>java</code> into a terminal and a message box will appear prompting you to install Java.</p>
+
+<p>Then I followed the user setup from Moritz Haarmann&#39;s <a href="http://momo.brauchtman.net/2011/11/12/howto-install-jenkins-on-os-x-and-make-it-build-mac-stuff/">blog</a>. I&#39;m not sure if the jenkins account part is still necessary, as when I got to the stage about changing the user name in the plist file, it had already been set to Jenkins. The changing permissions on the Jenkins home folder was needed though. After that I was able to run ssh-keygen and generate some keys.</p>
+
+<p><strong>Updating Git Workflow</strong></p>
+
+<p>I installed the Git and XCode plugins from the Manage Jenkins screen with no issues. I then created a simple project to test it out. I just added a git clone step. This failed for me with the following errors</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Failed to connect to repository : Command "git ls-remote -h ..../MyApp.git HEAD" returned status code 128:
+stdout: 
+stderr: fatal: '..../MyApp.git' does not appear to be a git repository
+fatal: The remote end hung up unexpectedly
+</code></pre></div>
+<p>The problem here is that the repository is on my Dropbox account (as described <a href="http://www.gerardcondon.com/blog/2012/01/26/version-control-in-xcode-using-git-and-dropbox/">here</a>). This folder is not visible to the jenkins user. I didn&#39;t want to mess around with changing permissions on the Dropbox folder so I looked for an alternative solution. A colleague at work told me about <a href="https://bitbucket.org/">Bitbucket</a> from Atlassian. This is similar to <a href="http://www.github.com">Github</a> but allows for private repositories. As luck would have it, I had already been using another Atlassian product <a href="http://www.sourcetreeapp.com/">SourceTree</a> to manage my git repositories. This tool works seamlessly with Bitbucket. Once I uploaded my ssh key to Bitbucket I could simply add another remote repository to my local repository and push to it, all from within SourceTree.</p>
+
+<p>Now that I had a repository on Bitbucket, it was time to integrate that with Jenkins. This turned out to be fairly easy. I uploaded the ssh key for the jenkins account to Bitbucket. The admin page for the repository showed its ssh address so I added a Git build step to the project using that ssh address. When the project is built now, Jenkins will download the latest code from the repository first and then continue on.</p>
+
+<p><strong>Jenkins Issues</strong></p>
+
+<p>While Jenkins is mostly working fine now, there were a few issues I&#39;ve run into. The git checkout isn&#39;t working at all using the Git Plugin. Originally it did but then I started getting the following errors
+    FATAL: Could not checkout null with start point 02dbc3e456d6aa6079543eeaa8361bdebe8fac9d
+    hudson.plugins.git.GitException: Could not checkout null with start point 02dbc3e456d6aa6079543eeaa8361bdebe8fac9d
+        at hudson.plugins.git.GitAPI.checkoutBranch(GitAPI.java:956)
+        ...</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Caused by: hudson.plugins.git.GitException: Command "git checkout -f 02dbc3e456d6aa6079543eeaa8361bdebe8fac9d" returned status code 128:
+stdout: 
+stderr: fatal: reference is not a tree: 02dbc3e456d6aa6079543eeaa8361bdebe8fac9d
+</code></pre></div>
+<p>I wasn&#39;t able to find a solution to this so I had to stop using the Git plugin and just add an <code>execute shell</code> build step to clone the Bitbucket git repository. As I add more projects to Jenkins, I&#39;ll check if I get the same issues there also.</p>
+
+<p><strong>Build XCode Project</strong></p>
+
+<p>The <a href="http://www.XXX.com">XCode plugin</a> for Jenkins made it really easy to build once setup. You add an XCode build step and configure it as necessary. I chose to do a clean build each time. The project I tested this on was a static library so I didn&#39;t need an IPA built or any of the version number updates but they should be useful when building a proper app.</p>
+
+<p>When I first tried to build I got an error saying <code>You have not agreed to the Xcode license agreements</code>. I needed to run <code>sudo xcodebuild -license</code> in the terminal to fix this.</p>
+
+<p>In order to run the unit tests, the XCode plugin recommends using two build steps, one to build the app and the other to execute the tests. The reason for this is that the test step requires extra parameters i.e. path to the simulator SDK. If you&#39;re using the OCTest framework which comes with XCode then the plugin will listen to the test output and generate JUnit compatible xml files. Jenkins can read these and add the to the build results page.</p>
+
+<p><strong>Set up Coverage</strong>
+Setting up code coverage for iOS projects is not an easy task. My gcov setup for XCode 4.3 still worked for me but the problem was to integrate this with Jenkins. Coverstory would not be of use here but I found this <a href="https://software.sandia.gov/trac/fast/wiki/gcovr">gcovr</a> script from the <a href="http://blog.octo.com/en/jenkins-quality-dashboard-ios-development/">Octo Talks</a> blog. Gcovr will convert the gcov output into a <a href="http://cobertura.sourceforge.net/">cobertura</a> xml file which can be read by Jenkins.</p>
+
+<p>One problem I had was that for some reason, gcov wouldn&#39;t work on the files in the Jenkins workspace. I was getting <code>gcno:cannot open graph file</code>errors. Coverstory also didn&#39;t work on the files in this location. What worked for me was to copy the gcda and gcno files out to a temp folder under /Users/Shared/Jenkins/Home. Passing the original build location as the root parameter to gcovr allowed the cobertura plugin to find the source code in the html report, while also removing system headers from the coverage report. Here is the script.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>cp -r ${WORKSPACE}/build/${JOB_NAME}.build/Coverage-iphonesimulator/${JOB_NAME}.build/Objects-normal/i386/*.gc* /Users/shared/Jenkins/tmp/${JOB_NAME}
+cd /Users/shared/Jenkins/tmp/${JOB_NAME}
+gcovr -r $WORKSPACE/$JOB_NAME -x &gt; ${WORKSPACE}/coverage.xml
+</code></pre></div>
+<p>The <a href="http://blog.octo.com/en/jenkins-quality-dashboard-ios-development/">Octo Talks</a> blog also suggested a number of other metrics which could be captured in Jenkins. I added the SLOC Count and the Clang Build Scan. Both of these required installing tools and then Jenkins plugins which used those tools. This instructions on the blog covered this. Ones that I&#39;ve put on the someday/maybe list are the PMD plugin and OCLint.</p>
+
+<p>At the end of all this, Jenkins is working quite well for my simple test project. Next step is to try it out on my app.</p>
+
+<p>
+  <small><a href="../../2012/09/16/setting-up-jenkins-on-os-x.html">→</a> posted on September 16, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/05/19/localizing-ios-apps.html">Localizing iOS Apps</a>
+</h5><p>I was looking at a tutorial for creating a settings bundle for my app and it had separate files for different languages. I realised that I hadn&#39;t a clue how to localize iOS applications. I decided I&#39;d better look into it now, rather than at the end of development, in case it required me to change existing code. Much better to implement with localization in mind, than retrofit at the end of development.</p>
+
+<p>I&#39;m interested to see how many translations I&#39;ll be able to include in the app. I&#39;m not sure how easy it will be to do the translation or even how much text there will be to translate. I&#39;m planning a Chinese translation and for sentimental reasons I&#39;ll do an Irish translation. I&#39;ll probably try to get some European languages done also. I think that once I put in the infrastructure to do one language then adding additional ones shouldn&#39;t be too much bother.</p>
+
+<p>The basics of implementing localization is that you externalize all strings in your application to .strings files and then provide versions of these files for each language you support. The process for creating the basic localization.strings file is outlined <a href="http://userflex.wordpress.com/2011/10/20/localized-strings-xcode4/">here</a>. In your code you can get the localized values for these strings using <code>NSLocalizedString(@&quot;Externalized String Name&quot;, @&quot;&quot;)</code>.</p>
+
+<p><strong>Localization Tools</strong></p>
+
+<p>Using this method, we will have to deal with lots of .strings files. Xcode doesn&#39;t provide much help here so I looked around for third party apps. I bought <a href="http://www.cocoanetics.com/apps/linguan/">Linguan</a> on the Mac App Store and it looks very good. You point it at an Xcode project file and it locates all the .strings files and presents them in a nice table. It can generate text files which you can send on to your translators for them to translate and re-import their translations. I&#39;m very pleased with it so far.</p>
+
+<p>Apart from having .strings files for strings in the code, I also need to localize the app&#39;s storyboards. Albert Mata has a fantastic tutorial on how to do this <a href="http://www.albertmata.net/articles/introduction-to-internationalization-using-storyboards-on-ios-5.html">here</a>. A big problem with localizing storyboards is that changes in one language&#39;s storyboards are not propagated to the others. Manually keeping these in sync would be a nightmare. Thankfully there is a handy script <a href="http://code.google.com/p/edim-mobile/source/browse/trunk/ios/IncrementalLocalization/localize.py">here</a> by Ederson Machado, which will update the .strings files for the storyboard and also keep the storyboards in sync. There is a nice video outlining the features of the script <a href="http://www.youtube.com/watch?v=cF1Rf02QvZQ">here</a>. By adding this script as a build run script, we can ensure that our storyboards are always in sync.</p>
+
+<p><strong>Localization Workflow</strong></p>
+
+<p>My localization workflow is as follows:</p>
+
+<ul>
+<li>First I created multiple storyboards for each language using the Localization area on the sidebar. This will create a language.proj folder for each language.</li>
+<li>I ran the localize.py script on the project. This generated the mainstoryboard.strings files in each of the language folders.</li>
+<li>I manually add these files to Xcode. First I added the English version. Then I clicked the plus button in the Localization sidebar and added the other languages. Xcode is able to find those .strings files and link them to the overall file.</li>
+<li>I create a localization.strings file to deal with the strings in the code and added all languages.</li>
+<li>I ran genstrings but I don&#39;t think this is needed if you&#39;re using Linguan.</li>
+<li>When I opened the project in Linguan it was able to find all the strings files, including those from the storyboard.</li>
+</ul>
+
+<p>I&#39;m satisfied now that I have the localization mostly under control. One thing I still need to look at is how does this affect testing. Hopefully any test framework that I used will be able to run the tests in all languages.</p>
+
+<p>
+  <small><a href="../../2012/05/19/localizing-ios-apps.html">→</a> posted on May 19, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/05/15/starting-with-core-data.html">Starting out with Core Data</a>
+</h5>
+<p>For my project, I need a way to store the model data that I will be generating. I certainly don&#39;t want to write a persistence layer for my model objects so I will definitely use a standard library for this. There are a number of options</p>
+
+<ul>
+<li>  Core Data. This provides an editor to create the objects and XCode will generate the required model classes for me.</li>
+<li>  Use a database like Sqlite directly. Core Data uses a sqlite database behind the scenes but instead I could create one directly and access it using a library like <a href="https://github.com/ccgus/fmdb">FMVH</a>.</li>
+<li>  A service like <a href="http://www.parse.com">Parse.com</a>. This provides an online backend for apps.</li>
+</ul>
+
+<p>I don&#39;t want to use the database directly as I prefer working with objects, so that would rule out sqlite for me. Parse.com is really interesting. Among other things, it provides an online site where you can see the data in a spreadsheet interface. This <a href="http://houseofbilz.com/archives/2011/11/30/an-example-backboneparse-com-app/">tutorial</a> shows how you can use Parse.com to implement a todo list website. It&#39;s a real pity that iCloud doesn&#39;t provide a similar API to allow non-Apple devices access the data.</p>
+
+<p>In the end I&#39;ve decided to go with Core Data. The reasons for this are</p>
+
+<ul>
+<li>It&#39;s an Apple standard library and one of the purposes of writing an app was to learn about iOS and Apple technologies. Where possible I&#39;ve tried to stick to the Apple way of doing things as I can be sure that this approach will be supported in future - or if there is a new system, then a transition path will be provided.</li>
+<li>Core Data works on the object level rather than the database level. I&#39;ve programmed in objects for most of my career so this is familiar to me. I have a working knowledge of databases but I feel more comfortable using OOP.</li>
+<li>I&#39;m assuming that Core Data should integrate with iCloud better than other approaches. Thinking ahead I&#39;d like to look at iCloud at some stage and learning Core Data first should make that a bit easier.</li>
+</ul>
+
+<p><strong>Magical Record and Mogenerator</strong></p>
+
+<p>There are some good Core Data tutorials out there. The best introduction that I found was the <a href="http://www.stanford.edu/class/cs193p/cgi-bin/drupal/downloads-2011-fall">Stanford</a> iOS course (lectures 13 &amp; 14). To be honest, the code required to implement Core Data is fairly complex and verbose. To deal with that, I started looking for libraries which would improve the Core Data experience. The best I found is <a href="https://github.com/magicalpanda/MagicalRecord">Magical Record</a>. This library simplifies Core Data a great deal and provides loads of helper categories &amp; functions. There is an excellent tutorial on MagicalRecord <a href="http://yannickloriot.com/2012/03/magicalrecord-how-to-make-programming-with-core-data-pleasant/">here</a>. I also found <a href="http://ablfx.com/blog/?post_type=post&amp;p=561">this</a> tutorial really good and it also includes a sample project which uses MagicalRecord.</p>
+
+<p>Magical Record works well with another tool called <a href="https://github.com/rentzsch/mogenerator">Mogenerator</a>. You download a .dmg from the site and install from that. There is a nice tutorial <a href="http://raptureinvenice.com/getting-started-with-mogenerator/">here</a>. Mogenerator generates classes from the Core Data xcdatamodel file. The normal Core Data build can also do this but the advantage of Mogenerator is that it generates a second set of classes for each Core Data entity. This second set will never be overwritten so you can write custom code in these. The first set of classes will be regenerated each time the model gets updated.</p>
+
+<p>Magical Record is available on Github. Like most iOS projects I&#39;ve found there, it seems the standard way to integrate this with your project is to copy the source files into your code and work away. I&#39;m not too comfortable with this approach and would prefer to keep third party libraries separate from my code. This would allow me to update these independently and share them between projects. I&#39;ll have to look into what options are available for this. </p>
+
+<p>
+  <small><a href="../../2012/05/15/starting-with-core-data.html">→</a> posted on May 15, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/04/29/joined-the-ios-developer-program.html">Joined the iOS Developer program</a>
+</h5>
+<p>I&#39;ve been fairly busy with the Start Your Own Business course so I haven&#39;t had much time to do iOS programming. It&#39;s time to get back into it now though, and so I&#39;ve just paid my subscription to the iOS developer program. I&#39;m looking forward to being able to run code on an actual device. It&#39;s been a bit limiting working on just the simulator and there&#39;s nothing like seeing your code running on the final hardware.</p>
+
+<p>
+  <small><a href="../../2012/04/29/joined-the-ios-developer-program.html">→</a> posted on April 29, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/04/02/where-have-all-the-srpgs-gone.html">Where have all the SRPGs gone</a>
+</h5>
+<p>I had a draft post pre-written earlier this year lamenting the decline of the SRPG game genre. In brief, I used to import these types of games all the time from America for my PS2. I assumed that this would continue for the PS3 and really enjoyed <a href="http://www.eurogamer.net/games/valkyria-chronicles-ps3">Valkyria Chronicles</a>, but after that the genre has pretty much disappeared for the mainstream consoles. Even on PSN and Xbox live, there has been very little released (<a href="http://www.eurogamer.net/articles/vandal-hearts-flames-of-judgment-review">Vandal Hearts</a> excepted). Modern games seemed to be limited more and more to mass market genres such as the 3D first person shooter. </p>
+
+<p>However in the past month a surprising new development in game development has kind of invalidated my draft post. Veteran game designers have started to use Kickstarter to seek funding for niche game genres with some amazing results. The first big <a href="http://www.kickstarter.com/projects/66710809/double-fine-adventure">success</a> on Kickstarter was Tim Schafer, Ron Gilbert and Double Fine raising over three million to make a new adventure game. I love the Monkey Island games so I backed this - it was actually the first thing I&#39;d ever supported on Kickstarter. I have no idea if the game will be any good but given the caliber of the people involved, I think it&#39;s in safe hands. To be honest, the videos they&#39;ve made for the project have been worth the cash already.</p>
+
+<p>Following on from that Brian Fargo launched a <a href="http://www.kickstarter.com/projects/inxile/wasteland-2">Wasteland 2</a> project. This is an attempt to revive the party based CRPGs. This was another genre that I really enjoyed and which stagnated recently. Today&#39;s publishers aren&#39;t willing to put up the cash for these games. I&#39;ve started to contribute to more of these gaming projects on Kickstarter (including a space based game - <a href="http://www.kickstarter.com/projects/64409699/ftl-faster-than-light">FTL</a> and a Norse SRPG - <a href="http://www.kickstarter.com/projects/stoic/the-banner-saga">The Banner Saga</a>). Hopefully this will show that there is a sizable market for these games and they will be more likely to be funded in future. It&#39;s really interesting how much more invested in the games you feel once you back them on Kickstarter. For example, I&#39;m really enjoying reading the updates from the game developers. If I was an indie developer I would definitely go down this route. The community that the Kickstarter project creates for your game might be as important as the funding itself.</p>
+
+<p>Another other thing this has made me realize is how much reputation and track record matters. I had never heard of Wasteland 2 before backing it. However once Brian Fargo reeled off the list of games that he&#39;d worked on, i.e. Fallout, Baldur&#39;s Gate and Icewind Dale (all of which still sit proudly on my shelf), I had no hesitation in subscribing. I would much rather see people like him develop games instead of leaving it in the hands of companies like Zynga. Trying to learn from this, I think that having a portfolio would be really valuable for a software engineer. Imagine the kind of CV/resume you&#39;d have if you developed one app, website or side project per year and hosted these online. Given the frameworks and services that are out there e.g. <a href="http://rubyonrails.org/">Rails</a>, <a href="http://www.parse.com">Parse.com</a>, <a href="http://www.heroku.com">Heroku</a> for the web, iOS and Android for mobile, I think it&#39;s never been easier to create quality small scale projects. To be honest I wish I had started something like that years ago. If I was coming out of college now, one of the first things I&#39;d do would be to register my name as a url and start hosting projects there. It&#39;s something small but would really pay off down the line.</p>
+
+<p>
+  <small><a href="../../2012/04/02/where-have-all-the-srpgs-gone.html">→</a> posted on April  2, 2012<span class="tag-item"><small class="label label-default label-tag">gaming</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/03/20/start-your-own-business-course.html">Start your own Business Course</a>
+</h5>
+<p>I&#39;ve signed up for a Start Your Own Business <a href="http://www.sceb.ie/Online-Booking#Start-Your-Own-Business">course</a> which is being run by the <a href="http://www.sceb.ie">South Cork Enterprise Board</a>. It&#39;s an eight week course taking three hours every Thursday. I&#39;ve no intention of leaving my current job but if I&#39;m going to be doing this on the side, then I&#39;d like to know how to do it properly and what type of supports are out there.</p>
+
+<p>I&#39;ve gone to three nights already and I&#39;m finding it very useful. I think that the process of creating a business plan focuses your mind on what you want to achieve. I&#39;ve asked myself more questions about what I want to do with this app development in the past few weeks than in the previous two months. It&#39;s also interesting meeting people there who are setting up non software businesses and seeing what common problems and tasks we have. It&#39;s good to step outside the software/computing world for a bit and get a wider perspective on things. I hope to come out of this with a clear idea of where I want to take the app work and what I need to do to accomplish this.</p>
+
+<p>
+  <small><a href="../../2012/03/20/start-your-own-business-course.html">→</a> posted on March 20, 2012<span class="tag-item"><small class="label label-default label-tag">business</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/03/04/setting-up-octopress-and-github.html">Setting up a Blog on Octopress and Github</a>
+</h5><p>This post documents how I migrated the blog from <a href="http://www.wordpress.com">Wordpress.com</a> to <a href="http://www.octopress.org">Octopress</a>. There are a number of bloggers who have written about switching their blogs to Octopress. I found these posts very helpful - <a href="http://scottmuc.com/migrated-to-octopress/">Scott Muc</a>, <a href="http://mattgemmell.com/2011/09/12/blogging-with-octopress/">Matt Gemmell</a> and <a href="http://blog.bigdinosaur.org/setting-up-octopress/">Bigdinosaur Blog</a>. The basic sequence of steps I followed was</p>
+
+<ul>
+<li>Install Ruby.</li>
+<li>Install Octopress.</li>
+<li>Create account on <a href="http://www.github.com">Github</a>.</li>
+<li>Export previous blog from Wordpress and convert it to Markdown</li>
+<li>Generate Octopress blog and publish it to Github.</li>
+<li>In parallel I registered www.gerardcondon.com and set it up so that it pointed to the blog on Github.</li>
+<li>Setup a drafts folder on Dropbox so that I can write posts from anywhere.</li>
+</ul>
+
+<p><strong>Ruby Setup</strong></p>
+
+<p>The first step is to install <a href="http://www.ruby-lang.org/en/">Ruby</a>. If you want to, you can compile this from the source but the better option is to use a third party tool to install and manage Ruby. The one I used is <a href="https://rvm.beginrescueend.com/rvm/install/">RVM</a>. </p>
+
+<p>By default OS X Lion comes with 1.8.7 pre-installed but Octopress needs 1.9.2. (I tried 1.9.3 at first but Octopress reported an error). I read on Stack Overflow that it&#39;s not recommended to upgrade the default installation but instead to install the newer version alongside it. RVM is designed to manage multiple versions of Ruby on a system so it&#39;s a nice fit here.</p>
+
+<p>The command to install Ruby is <code>rvm install 1.9.2</code>. However when I tried this I got errors complaining that the C compiler was LLVM based instead of gcc. To get around this I added the following flag <code>rvm install 1.9.2 --with-gcc=clang</code>. Now we can tell RVM to use version 1.9.2 with this command <code>rvm use 1.9.2</code>.</p>
+
+<p><strong>Install Octopress</strong></p>
+
+<p>Installing Octopress is very easy once Ruby is installed. The instructions can be found at <a href="http://octopress.org/docs/setup/">Octopress Setup</a>. The install command is <code>rake install</code> and then to build your website run <code>rake generate</code>. Octopress takes whatever pages and posts it finds under the source folder and builds these to a static website. These need to have particular file names and contents, so Octopress provides helper commands to generate a new post or page. These are <code>rake new_page[&quot;page_title&quot;]</code> and <code>rake new_post[&quot;post_title&quot;]</code> respectively.</p>
+
+<p><strong>Export from Wordpress</strong></p>
+
+<p>To export from Wordpress I simply used their export tool. This exported all the posts in their own html files. This would have been fine for Octopress but I wanted the whole site in Markdown, so I converted each post from html to markdown and added to the source/_posts folder.</p>
+
+<p><strong>Host on Github</strong></p>
+
+<p>Once you have the Octopress blog created you need to host it somewhere. I choose Github as it provides for free hosting of static blogs. Also if I do release some iOS code later it will be on Github, so there&#39;s no harm in getting it set up now. </p>
+
+<p>This <a href="http://code.dblock.org/octopress-setting-up-a-blog-and-contributing-to-an-existing-one">site</a> has a very good explanation of what is going on with Github. Basically we build our website locally to a folder named public. We create a repository on Github for our webpage. Octopress then uploads the contents of the public folder to the master branch on this repository whenever we run the <code>rake deploy</code> command. It is recommended that you upload the site source to a source branch on the repository. That way you can always regenerate the website even if you delete the local files.</p>
+
+<p><strong>Register URL</strong></p>
+
+<p>I decided to register www.gerardcondon.com for this site as I didn&#39;t want to be tied to a Github url in the same way as I was tied to the Wordpress.com one. I didn&#39;t need hosting or anything special - just forwarding. I used <a href="http://www.namecheap.com">Namecheap</a>. The price is really cheap for a .com address - only 6 or 7 dollars a year. </p>
+
+<p>There are instructions on <a href="http://pages.github.com">Github Pages</a> on how to set up the forwarding. You need to setup an A record to redirect to www.github.com for your url without the www part, i.e. gerardcondon.com will redirect to www.github.com. Then you need to create a CNAME file in github and then setup a CNAME redirect for the www part of the url, i.e. www.gerardcondon.com redirects to gerardcondon.github.com. However I ran into some problems doing this on the namecheap site. When I tried to setup the CNAME I got the following errors</p>
+
+<p><code>Improper records were NOT saved!</code></p>
+
+<p><code>There were issues with some records and they were either set to default or completely removed. Please review the issues below and update again appropriately.</code></p>
+
+<p><code>INVALID_ADDR: &#39;gerardcondon.github.com/&#39; should not be an IP/ URL for CNAME record. (host name: www)</code></p>
+
+<p>However I just connected to the online chat support and the person assigned to me fixed it up in a few minutes - I have to say they were really helpful. This DNS stuff takes a while to settle down - I think it was a day or so before it had propagated out. Since then I&#39;ve had no trouble with it.</p>
+
+<p><strong>Octopress tweaks</strong></p>
+
+<p>I&#39;ve made a few tweaks to Octopress to suit my own tastes. </p>
+
+<ul>
+<li>I changed the indented-lists setting to true in sass/custom/_layout.scss. Previously the numbers and bullets for lists were not in line with the rest of the post text but instead were placed in the left margin. </li>
+<li>I reduced the size of the blockquotes in the sass/base/_typography.scss file, from 1.2 em down to 1 em to be the same size as normal text.</li>
+<li>I changed the solarized theme from dark to light in sass/base/_solarized.scss.</li>
+</ul>
+
+<p>It&#39;s really easy to make changes to Octopress, there is a folder called sass with most of the style stuff. There are a few configuration files also which can be updated. One nice thing about checking all this stuff into github is that you can go back and see what style updates you made in previous commits.</p>
+
+<p><strong>Add Draft folder and sync with Dropbox</strong></p>
+
+<p>At this stage Octopress was installed on my Macbook Air and working perfectly for me. One limitation of this setup was that I could only edit posts from that machine. I didn&#39;t mind only being able to regenerate the site from the Air as that&#39;s not a common task, but I wanted to be able to write posts from anywhere. I also wanted the ability to write draft posts and not have Octopress automatically publish those.</p>
+
+<p>I found a technique for managing draft posts on <a href="http://www.i-m-code.com/blog/blog/2012/01/25/target-any-deployment-environment-in-octopress-with-ease/">Frozen Bytes</a>. This allows you to create a drafts folder and provides commands for moving posts between the draft and published state.</p>
+
+<p>Using this, I created a folder called drafts in Dropbox. I then symlinked to this from inside the sources directory on the Air. All my drafts are now available in Dropbox and I can edit these anywhere. This is especially useful when editing from iOS as there are a number of markdown editors which can edit files on Dropbox.</p>
+
+<p><strong>Summary</strong></p>
+
+<p>I think that&#39;s everything! It was fairly straightforward in retrospect to set up. The new setup works really well. I&#39;m very happy with the look of Octopress and the editing workflow in markdown is much better than using the Wordpress editor. Looking forward to using it in future.</p>
+
+<p>
+  <small><a href="../../2012/03/04/setting-up-octopress-and-github.html">→</a> posted on March  4, 2012<span class="tag-item"><small class="label label-default label-tag">octopress</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/02/22/os-x-mountain-lion.html">OS X Mountain Lion</a>
+</h5>
+<p>Apple has just announced <a href="http://www.apple.com/macosx/mountain-lion">Mountain Lion</a>, the latest update to OS X, and it looks to have some interesting features. The main one I&#39;m looking forward to is the addition of <a href="http://www.apple.com/macosx/mountain-lion/features.html#airplay">AirPlay</a> to the Mac. I love being able to stream video from the iPhone to the Apple TV. It&#39;s really handy for the iTunes U lectures. However for normal videos that I have on the Mac, it&#39;s annoying to have to convert them via <a href="http://www.inmethod.com/forum/posts/list/4529.page">Air Video Server</a> on the Mac and then use <a href="http://www.inmethod.com/air-video/index.html">Air Video</a> on the iPhone to get them to display on the Apple TV. Having AirPlay on the Mac stream directly to the Apple TV will be very handy. According to the docs, it&#39;s just for streaming applications and presentations but perhaps they will open it up to interactive applications in future. I wonder what the latency would be like on this and if eventually it would be possible to play games via the Apple TV. </p>
+
+<p>I&#39;m finding that as I integrate more and more Apple devices into my setup, they all make each other work better. AirPlay is one example of this. Another is iTunes match which really starts to excel when you have multiple devices. Previously it was impossible to keep multiple iTunes in sync. It was a nightmare trying to add new music as it had to be added to each library separately. Now my music library is always in sync everywhere and when I add music to one library, it gets uploaded and is available on all others immediately. I haven&#39;t always been too impressed with Apple&#39;s cloud services (i.e. MobileMe was a bit of a disaster) but they&#39;ve got it right with iTunes Match.</p>
+
+<p>
+  <small><a href="../../2012/02/22/os-x-mountain-lion.html">→</a> posted on February 22, 2012<span class="tag-item"><small class="label label-default label-tag">apple</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/02/21/code-coverage-updates-for-xcode-4-dot-3.html">Code Coverage Updates for Xcode 4.3</a>
+</h5><p>In a previous <a href="http://www.gerardcondon.com/blog/2012/02/17/adding-code-coverage-to-unit-tests/">post</a>, I described how I got code coverage up and running in Xcode 4.2. Apple have just released Xcode 4.3 and unfortunatly updating to this has broken my code coverage. The reason is that 4.3 removes the /Developer folder and moves this internally to the Xcode.app package. While this has good consequences - it should be possible to update Xcode from the App Store like a normal app - unfortunately it has also removed the libprofile_rt library from /Developer/usr/lib. I haven&#39;t been able to find a new version of this library in Xcode 4.3. When I tried using the version from 4.2, I got &quot;mach-o but wrong architecture&quot; errors.</p>
+
+<p>This means that when building my unit tests with Coverage I get link errors saying that I am missing llvm<em>gcda functions (llvm</em>gcda<em>start</em>file, llvm<em>gcda</em>increment<em>indirect</em>counter, llvm<em>gcda</em>emit<em>function, llvm</em>gcda<em>emit</em>arcs). I searched on Google to try and find a solution for 4.3 but it seemed all solutions were for 4.2 so I needed to try to solve this myself. The solution I came up with is fairly hacky. I&#39;m hoping that as more people upgrade to 4.3, a better solution will be found and I can switch to that.</p>
+
+<p>My solution is to take the actual file which contained the gcda functions in libprofile_rt, add it to my own source code and compile it myself. The file in question can be found on llvm.org - <a href="https://llvm.org/svn/llvm-project/llvm/trunk/runtime/libprofile/GCDAProfiling.c">here</a>. To get it to build locally I deleted the win32 and sys includes (lines 27 to 31 inclusive) and replaced the llvm include (line 23) with <code>#include &quot;stdint.h&quot;</code>. This builds fine using the Coverage build configuration and outputs the same gcda and gcno files as before. To make sure that this code doesn&#39;t end up in the released project by accident, I&#39;ve included it in the unit test bundle rather than the app bundle. This is fine for me as I only need coverage when running the tests anyway.</p>
+
+<p><strong>Update:</strong> Some feedback from Tom Black, who emailed me to point out that libprofile_rt can be found in <code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/</code> 
+However this library did not work for either of us. Instead we got errors like 
+<code>The bundle “GCUtilsTests.octest” couldn’t be loaded because it is damaged or missing necessary resources.</code>
+<code>Library not loaded: @executable_path ... libprofile_rt.dylib</code>
+<code>Reason: image not found</code><br>
+Also this library didn&#39;t produce .gcda files but instead generated .dia files which didn&#39;t work in Coverflow.</p>
+
+<p>What worked for Tom, but not for me, was not to include libprofile at all. This removed these errors and another incompatible binary error. Now however he got the following error. 
+<code>Detected an attempt to call a symbol in system libraries that is not present on the iPhone:
+fopen$UNIX2003 called from function llvm_gcda_start_file</code>
+He found the solution to this issue <a href="http://www.infinite-loop.dk/blog/2012/02/code-coverage-and-fopen-unix2003-problems/">here</a>. I still got link errors when I followed this though so I need to stick with my original solution.</p>
+
+<p><strong>Update:</strong> Another commenter Rajiv emailed me to say that creating a new target for his project made the coverage work for him. It generated the .gcda and .gcno files when he exited using exit(0). I&#39;ve tried creating a new simple iOS app and I don&#39;t get any errors for this when I enable coverage.</p>
+
+<p>One thing which might explain why it still doesn&#39;t work for some of my projects is the type of project being built. My original project was a static library. I tried to create a new static library project and when I try to enable coverage I get the same link errors as above.</p>
+
+<p>
+  <small><a href="../../2012/02/21/code-coverage-updates-for-xcode-4-dot-3.html">→</a> posted on February 21, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2012/02/18/apple-new-introduction-to-ios-development.html">Apple's New Introduction to iOS Development</a>
+</h5>
+<p>Apple has posted a <a href="https://developer.apple.com/library/ios/#referencelibrary/GettingStarted/RoadMapiOS/Introduction/Introduction.html">new guide</a> to iOS development which ties together all the various strands of creating an app. (via <a href="http://www.loopinsight.com/2012/02/17/apple-posts-guide-to-start-developing-ios-apps/">Loop Insight</a>). Looks really nice.</p>
+
+<p>
+  <small><a href="../../2012/02/18/apple-new-introduction-to-ios-development.html">→</a> posted on February 18, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr />
+<div class="well-sm">
+  <ul class="pager">
+    <li class="previous">
+      <a href="../7/">&larr;</a>
+    </li>
+    <span class="text-center">Page 8 of 10</span>
+    <li class="next">
+      <a href="../9/">&rarr;</a>
+    </li>
+  </ul>
+</div>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="../../tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="../../tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="../../tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="../../tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

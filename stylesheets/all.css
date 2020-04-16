@@ -1,0 +1,258 @@
+/*
+  any variables and settings should be defined here,
+  like colors for instance
+*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_settings\.scss}line{font-family:\000038}}
+blockquote {
+  font-size: 12px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\000031}}
+p code {
+  color: #333;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  border: 1px solid #ddd; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\000037}}
+li code {
+  color: #333;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  border: 1px solid #ddd; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000314}}
+.highlight table td {
+  padding: 5px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000315}}
+.highlight table pre {
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000316}}
+.highlight {
+  color: #faf6e4;
+  background-color: #122b3b; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000320}}
+.highlight .gl {
+  color: #dee5e7;
+  background-color: #4e5d62; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000324}}
+.highlight .gp {
+  color: #a8e1fe;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000328}}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #6c8b9f;
+  font-style: italic; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000332}}
+.highlight .cp {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000336}}
+.highlight .err {
+  color: #fefeec;
+  background-color: #cc0000; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000340}}
+.highlight .gr {
+  color: #cc0000;
+  font-weight: bold;
+  font-style: italic; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000345}}
+.highlight .k, .highlight .kd, .highlight .kv {
+  color: #f6dd62;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000349}}
+.highlight .o, .highlight .ow {
+  color: #4df4ff;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000353}}
+.highlight .p, .highlight .pi {
+  color: #4df4ff; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000356}}
+.highlight .gd {
+  color: #cc0000; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000359}}
+.highlight .gi {
+  color: #b2fd6d; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000362}}
+.highlight .ge {
+  font-style: italic; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000365}}
+.highlight .gs {
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000368}}
+.highlight .gt {
+  color: #dee5e7;
+  background-color: #4e5d62; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000372}}
+.highlight .kc {
+  color: #f696db;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000376}}
+.highlight .kn {
+  color: #ffb000;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000380}}
+.highlight .kp {
+  color: #ffb000;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000384}}
+.highlight .kr {
+  color: #ffb000;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000388}}
+.highlight .gh {
+  color: #ffb000;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000392}}
+.highlight .gu {
+  color: #ffb000;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\0000396}}
+.highlight .kt {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003100}}
+.highlight .no {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003104}}
+.highlight .nc {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003108}}
+.highlight .nd {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003112}}
+.highlight .nn {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003116}}
+.highlight .bp {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003120}}
+.highlight .ne {
+  color: #b2fd6d;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003124}}
+.highlight .nl {
+  color: #ffb000;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003128}}
+.highlight .nt {
+  color: #ffb000;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003132}}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #f696db;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003136}}
+.highlight .ld {
+  color: #f696db;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003140}}
+.highlight .ss {
+  color: #f696db;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003144}}
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .sr, .highlight .s1 {
+  color: #fff0a6;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003148}}
+.highlight .se {
+  color: #4df4ff;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003152}}
+.highlight .sc {
+  color: #4df4ff;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003156}}
+.highlight .si {
+  color: #4df4ff;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003160}}
+.highlight .nb {
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003163}}
+.highlight .ni {
+  color: #999999;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003167}}
+.highlight .w {
+  color: #BBBBBB; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003170}}
+.highlight .go {
+  color: #BBBBBB; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003173}}
+.highlight .nf, .highlight .fm {
+  color: #a8e1fe; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003176}}
+.highlight .py {
+  color: #a8e1fe; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003179}}
+.highlight .na {
+  color: #a8e1fe; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/_code\.css\.erb}line{font-family:\00003182}}
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi, .highlight .vm {
+  color: #a8e1fe;
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/all\.scss}line{font-family:\000036}}
+.tag-item {
+  padding-left: 10px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/all\.scss}line{font-family:\0000310}}
+figcaption {
+  text-align: center; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/circleci\/repo\/website\/source\/stylesheets\/all\.scss}line{font-family:\0000314}}
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }

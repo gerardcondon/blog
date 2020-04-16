@@ -1,0 +1,297 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h5>
+  <a href="../../2019/04/05/modern-c-plus-plus-articles.html">Excellent Series of Articles on Modern C++</a>
+</h5>
+<p>Here is a great series of articles on modern C++:</p>
+
+<ol>
+<li><a href="https://ds9a.nl/articles/posts/c++-1/">Relation between C and C++, Strings</a></li>
+<li><a href="https://ds9a.nl/articles/posts/cpp-2/">Namespaces, Classes, RAII, Smart pointers, Threads, Locking, Error Handling</a></li>
+<li><a href="https://ds9a.nl/articles/posts/cpp-3/">Inheritance &amp; polymorphism, Templates</a></li>
+<li><a href="https://ds9a.nl/articles/posts/cpp-4/">Lambdas, Containers and algorithms, Boost containers</a></li>
+<li><a href="https://ds9a.nl/articles/posts/cpp-5/">Memory management, RVO, Smart Pointers</a></li>
+<li><a href="https://ds9a.nl/articles/posts/cpp-6/">Static assert, Constexpr, Time, Enums, Initializer Lists, Regexp, Optionals</a></li>
+</ol>
+
+<p>
+  <small><a href="../../2019/04/05/modern-c-plus-plus-articles.html">→</a> posted on April  5, 2019<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2018/10/02/automated-building-with-circleci.html">Automated building with CircleCI</a>
+</h5><p>I&#39;ve started using <a href="#">CircleCI</a> to automatically build repos - specifically my various static websites.
+It&#39;s working really well. CircleCI will detect a change to the Github repo, automatically trigger a build and then push the result to the gh-pages branch.</p>
+
+<p>One tip I found useful is to use a <a href="https://circleci.com/docs/2.0/gh-bb-integration/#enable-your-project-to-check-out-additional-private-repositories">machine account</a> to push to the gh-pages branch - this means that we don&#39;t need to use our actual github SSH key.
+You will need machine accounts in [both[(https://github.com/DevProgress/onboarding/wiki/Using-Circle-CI-with-Github-Pages-for-Continuous-Delivery) Github and CircleCI.
+For each repository that you want to build you need to add the machine account as a collaborator on the Github repository.</p>
+
+<p>CircleCI will also trigger a build on the push to the gh-pages branch which is not what you want. To stop this we need to add <code>[ci skip]</code> to our commit message. In Middleman we can do this by adding <code>deploy.commit_message = &quot;Automated commit at #{time} by #{signature} [ci skip]&quot;</code> to our <code>config.ru</code>.</p>
+
+<p>
+  <small><a href="../../2018/10/02/automated-building-with-circleci.html">→</a> posted on October  2, 2018<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr />
+<p><a href="http://tldr.sh/">Tldr</a> looks great as a simplified version of man. Example based rather than pages of options.</p>
+
+<p>
+  <small><a href="../../2018/08/21/mp4.html">→</a> posted on August 21, 2018<span class="tag-item"><small class="label label-default label-tag">microposts</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2017/10/24/misc-html-links.html">Misc HTML Links</a>
+</h5>
+<p>Some links gathered while adding content to my <a href="http://www.gerardcondon.com/chess">chess</a> site</p>
+
+<ul>
+<li><a href="https://stackoverflow.com/a/2788289/1131820">Set the value of a text area</a></li>
+<li><a href="https://collaboration133.com/how-to-scale-iframe-content-in-ie-chrome-firefox-and-safari/2717/">Scale the content of an iFrame</a></li>
+<li><a href="https://stackoverflow.com/a/20583214/1131820">Use margin:auto to center iFrame</a></li>
+<li><a href="https://stackoverflow.com/a/21903119/1131820">Pass URL arguments to an iFrame</a></li>
+<li><a href="https://www.freeformatter.com/url-encoder.html#ad-output">Encode URL parameters</a></li>
+<li>Also you can use the <a href="https://www.w3schools.com/tags/tag_figcaption.asp">FigCaption</a> tag to add a caption to an iFrame. </li>
+</ul>
+
+<p>
+  <small><a href="../../2017/10/24/misc-html-links.html">→</a> posted on October 24, 2017<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr />
+<p>My son is starting to learn Irish at school and I&#39;m keeping track of the phrases he learns each week <a href="https://www.gerardcondon.com/irish-phrases">here</a>.</p>
+
+<p>
+  <small><a href="../../2017/10/24/mp1.html">→</a> posted on October 24, 2017<span class="tag-item"><small class="label label-default label-tag">microposts</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2017/10/22/final-fantasy-speedruns.html">Final Fantasy Speedruns</a>
+</h5>
+<p>Got hooked on this Final Fantasy 7 <a href="https://www.youtube.com/watch?v=EWgb-Jrk5tQ">speedrun</a>. The strats are incredible. How they manage the step count is beyond me.</p>
+
+<p>And here&#39;s a <a href="https://www.youtube.com/watch?v=DjKKvWvPups">run</a> for FF8 which looks good. Again this step counter stuff takes incredible skill.</p>
+
+<p>Loved those two Final Fantasy games in particular. Series high point for me - apart from 12 they never hit those heights again.</p>
+
+<p>
+  <small><a href="../../2017/10/22/final-fantasy-speedruns.html">→</a> posted on October 22, 2017<span class="tag-item"><small class="label label-default label-tag">gaming</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2017/10/03/apple-and-gaming.html">Apple and Gaming</a>
+</h5>
+<p>This was an excellent <a href="https://ohmdee.com/bait-and-switch-how-apple-created-nintendos-best-console-5268e62adbc9">post</a> by Dan Masters on how Apple messed up gaming on iOS. 
+At the time the App Store came out, I remember that pundits were questioning if Nintendo had a future and not only that, if even dedicated portable consoles had a future.</p>
+
+<p>The success of the Switch has put that to bed, but it would have been interesting to see what would have happened if Apple had really shown an interest in gaming. 
+They had huge advantages e.g. hardware, iOS, account system but threw it away by not executing on those advantages.</p>
+
+<p>The App Store for games has devolved into a two-bit fremium store which seems really strange compared to the high quality which they pride themselves on in their hardware. 
+I understand that this is a strategy - <a href="https://www.joelonsoftware.com/2002/06/12/strategy-letter-v/">commoditize your complements</a> but that seems shortsighted. 
+Their brand is a premium one and they are happy for it to be associated with junk apps. 
+Nintendo has a high quality brand in software and will be able to sell Mario and other games for 50-60 euro each for some time to come.</p>
+
+<p>
+  <small><a href="../../2017/10/03/apple-and-gaming.html">→</a> posted on October  3, 2017<span class="tag-item"><small class="label label-default label-tag">gaming</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2017/06/01/sublime-text-vintage-mode.html">Sublime Text Vintage Mode</a>
+</h5>
+<p>I started learning Vim recently and it works fantastically well on Linux. 
+Windows is a bit of a mess though and I&#39;m not confident of getting plugins working correctly. 
+Maybe the new Linux subsystem for Windows will help this. </p>
+
+<p>In the meantime I&#39;ve enabled vintage mode on Sublime Text and it seems to be working well. 
+The main thing it gives me is the keyboard navigation keys. 
+Not having to use the mouse or arrow keys is a big win. 
+I never realised how good it would be until I tried it.</p>
+
+<p>References: <a href="https://www.sublimetext.com/docs/3/vintage.html">Sublime Text Docs</a>, <a href="https://kingluddite.com/st2/using-vintage-mode-in-sublime-text-the-skinny">King Luddite Blog Post</a></p>
+
+<p>
+  <small><a href="../../2017/06/01/sublime-text-vintage-mode.html">→</a> posted on June  1, 2017<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr />
+<p>New <a href="https://www.youtube.com/watch?v=5T5lYl_HT30">album</a> from Lazerhawk. Great stuff</p>
+
+<p>
+  <small><a href="../../2017/02/26/mp2.html">→</a> posted on February 26, 2017<span class="tag-item"><small class="label label-default label-tag">microposts</small></span></small>
+</p>
+<hr /><h5>
+  <a href="../../2017/02/25/converting-yaml-to-json-in-javascript.html">Converting Yaml to JSON in JavaScript</a>
+</h5><p>I use the Middleman <a href="https://middlemanapp.com/advanced/data-files">data files</a> feature for my chess <a href="http://www.gerardcondon.com/chess/">site</a>.
+These files are written in yaml. 
+I could have used json directly for these which would have removed the need for this post but I find yaml is easier for manual editing - with json you constantly have to worry about matching up brackets. 
+From the Middleman erb files, when I build locally I am able to access things like <code>data.fide.ratings</code>. 
+However I would like to be able to load this data remotely and process it from my javascript code.</p>
+
+<p>To load the remote file I just use the JQuery Ajax <a href="https://api.jquery.com/jquery.get/">get</a> function and pass it the url of the file that I want. 
+Then I use the <a href="https://github.com/nodeca/js-yaml">js-yaml</a> library to parse the result and create a <code>data</code> json object from this. 
+Now from my JavaScript code I am able to access the same data using the same notation.</p>
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">loadYamlFromUrl</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span> <span class="dl">"</span><span class="s2">https://raw.githubusercontent.com/gerardcondon/chess/master/website/data/ratings.yaml</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        <span class="c1">// can now access data.fide etc</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This has worked well for me and for any data file that I was able to access via Middleman, I can now access the same data from JavaScript in the same format.</p>
+
+<p>
+  <small><a href="../../2017/02/25/converting-yaml-to-json-in-javascript.html">→</a> posted on February 25, 2017<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+</p>
+<hr />
+<div class="well-sm">
+  <ul class="pager">
+    <li class="previous">
+      <a href="../3/">&larr;</a>
+    </li>
+    <span class="text-center">Page 4 of 10</span>
+    <li class="next">
+      <a href="../5/">&rarr;</a>
+    </li>
+  </ul>
+</div>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="../../tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="../../tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="../../tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="../../tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="../../tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="../../tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="../../tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

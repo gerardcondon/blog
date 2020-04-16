@@ -1,0 +1,221 @@
+<!doctype html> 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge;chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Blog</title>
+    <meta content="Personal Blog and Website" name="description" />
+    <link rel="alternate" type="application/atom+xml" title="Chess Analysis" href="https://www.gerardcondon.com/feed.xml" /><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><!-- Latest compiled and minified CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><!-- Optional theme --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><!-- Latest compiled and minified JavaScript --><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link href="../stylesheets/all.css" rel="stylesheet" type="text/css" /><script type="text/javascript">
+      (function(d,e,j,h,f,c,b){d.GoogleAnalyticsObject=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)},d[f].l=1*new Date();c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-124147465-1", location.hostname);ga("send","pageview");
+    </script><script src="../javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-target="#navbar-ex1-collapse" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="https://www.gerardcondon.com">GerardCondon.com</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="../gaeilge.html">Gaeilge</a>
+            </li>
+            <li>
+              <a href="/music/piano.html">Music</a>
+            </li>
+            <li>
+              <a href="/chess">Chess</a>
+            </li>
+            <li>
+              <a href="../pages/links.html">Links</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-md-9"><h3>
+  Archive for May 2012
+</h3>
+<ul>
+  <h5>
+    <a href="05/19/localizing-ios-apps.html">Localizing iOS Apps</a>
+  </h5><p>I was looking at a tutorial for creating a settings bundle for my app and it had separate files for different languages. I realised that I hadn&#39;t a clue how to localize iOS applications. I decided I&#39;d better look into it now, rather than at the end of development, in case it required me to change existing code. Much better to implement with localization in mind, than retrofit at the end of development.</p>
+
+<p>I&#39;m interested to see how many translations I&#39;ll be able to include in the app. I&#39;m not sure how easy it will be to do the translation or even how much text there will be to translate. I&#39;m planning a Chinese translation and for sentimental reasons I&#39;ll do an Irish translation. I&#39;ll probably try to get some European languages done also. I think that once I put in the infrastructure to do one language then adding additional ones shouldn&#39;t be too much bother.</p>
+
+<p>The basics of implementing localization is that you externalize all strings in your application to .strings files and then provide versions of these files for each language you support. The process for creating the basic localization.strings file is outlined <a href="http://userflex.wordpress.com/2011/10/20/localized-strings-xcode4/">here</a>. In your code you can get the localized values for these strings using <code>NSLocalizedString(@&quot;Externalized String Name&quot;, @&quot;&quot;)</code>.</p>
+
+<p><strong>Localization Tools</strong></p>
+
+<p>Using this method, we will have to deal with lots of .strings files. Xcode doesn&#39;t provide much help here so I looked around for third party apps. I bought <a href="http://www.cocoanetics.com/apps/linguan/">Linguan</a> on the Mac App Store and it looks very good. You point it at an Xcode project file and it locates all the .strings files and presents them in a nice table. It can generate text files which you can send on to your translators for them to translate and re-import their translations. I&#39;m very pleased with it so far.</p>
+
+<p>Apart from having .strings files for strings in the code, I also need to localize the app&#39;s storyboards. Albert Mata has a fantastic tutorial on how to do this <a href="http://www.albertmata.net/articles/introduction-to-internationalization-using-storyboards-on-ios-5.html">here</a>. A big problem with localizing storyboards is that changes in one language&#39;s storyboards are not propagated to the others. Manually keeping these in sync would be a nightmare. Thankfully there is a handy script <a href="http://code.google.com/p/edim-mobile/source/browse/trunk/ios/IncrementalLocalization/localize.py">here</a> by Ederson Machado, which will update the .strings files for the storyboard and also keep the storyboards in sync. There is a nice video outlining the features of the script <a href="http://www.youtube.com/watch?v=cF1Rf02QvZQ">here</a>. By adding this script as a build run script, we can ensure that our storyboards are always in sync.</p>
+
+<p><strong>Localization Workflow</strong></p>
+
+<p>My localization workflow is as follows:</p>
+
+<ul>
+<li>First I created multiple storyboards for each language using the Localization area on the sidebar. This will create a language.proj folder for each language.</li>
+<li>I ran the localize.py script on the project. This generated the mainstoryboard.strings files in each of the language folders.</li>
+<li>I manually add these files to Xcode. First I added the English version. Then I clicked the plus button in the Localization sidebar and added the other languages. Xcode is able to find those .strings files and link them to the overall file.</li>
+<li>I create a localization.strings file to deal with the strings in the code and added all languages.</li>
+<li>I ran genstrings but I don&#39;t think this is needed if you&#39;re using Linguan.</li>
+<li>When I opened the project in Linguan it was able to find all the strings files, including those from the storyboard.</li>
+</ul>
+
+<p>I&#39;m satisfied now that I have the localization mostly under control. One thing I still need to look at is how does this affect testing. Hopefully any test framework that I used will be able to run the tests in all languages.</p>
+
+  <p>
+    <small><a href="05/19/localizing-ios-apps.html">→</a> posted on May 19, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+  <h5>
+    <a href="05/15/starting-with-core-data.html">Starting out with Core Data</a>
+  </h5>
+  <p>For my project, I need a way to store the model data that I will be generating. I certainly don&#39;t want to write a persistence layer for my model objects so I will definitely use a standard library for this. There are a number of options</p>
+  
+  <ul>
+  <li>  Core Data. This provides an editor to create the objects and XCode will generate the required model classes for me.</li>
+  <li>  Use a database like Sqlite directly. Core Data uses a sqlite database behind the scenes but instead I could create one directly and access it using a library like <a href="https://github.com/ccgus/fmdb">FMVH</a>.</li>
+  <li>  A service like <a href="http://www.parse.com">Parse.com</a>. This provides an online backend for apps.</li>
+  </ul>
+  
+  <p>I don&#39;t want to use the database directly as I prefer working with objects, so that would rule out sqlite for me. Parse.com is really interesting. Among other things, it provides an online site where you can see the data in a spreadsheet interface. This <a href="http://houseofbilz.com/archives/2011/11/30/an-example-backboneparse-com-app/">tutorial</a> shows how you can use Parse.com to implement a todo list website. It&#39;s a real pity that iCloud doesn&#39;t provide a similar API to allow non-Apple devices access the data.</p>
+  
+  <p>In the end I&#39;ve decided to go with Core Data. The reasons for this are</p>
+  
+  <ul>
+  <li>It&#39;s an Apple standard library and one of the purposes of writing an app was to learn about iOS and Apple technologies. Where possible I&#39;ve tried to stick to the Apple way of doing things as I can be sure that this approach will be supported in future - or if there is a new system, then a transition path will be provided.</li>
+  <li>Core Data works on the object level rather than the database level. I&#39;ve programmed in objects for most of my career so this is familiar to me. I have a working knowledge of databases but I feel more comfortable using OOP.</li>
+  <li>I&#39;m assuming that Core Data should integrate with iCloud better than other approaches. Thinking ahead I&#39;d like to look at iCloud at some stage and learning Core Data first should make that a bit easier.</li>
+  </ul>
+  
+  <p><strong>Magical Record and Mogenerator</strong></p>
+  
+  <p>There are some good Core Data tutorials out there. The best introduction that I found was the <a href="http://www.stanford.edu/class/cs193p/cgi-bin/drupal/downloads-2011-fall">Stanford</a> iOS course (lectures 13 &amp; 14). To be honest, the code required to implement Core Data is fairly complex and verbose. To deal with that, I started looking for libraries which would improve the Core Data experience. The best I found is <a href="https://github.com/magicalpanda/MagicalRecord">Magical Record</a>. This library simplifies Core Data a great deal and provides loads of helper categories &amp; functions. There is an excellent tutorial on MagicalRecord <a href="http://yannickloriot.com/2012/03/magicalrecord-how-to-make-programming-with-core-data-pleasant/">here</a>. I also found <a href="http://ablfx.com/blog/?post_type=post&amp;p=561">this</a> tutorial really good and it also includes a sample project which uses MagicalRecord.</p>
+  
+  <p>Magical Record works well with another tool called <a href="https://github.com/rentzsch/mogenerator">Mogenerator</a>. You download a .dmg from the site and install from that. There is a nice tutorial <a href="http://raptureinvenice.com/getting-started-with-mogenerator/">here</a>. Mogenerator generates classes from the Core Data xcdatamodel file. The normal Core Data build can also do this but the advantage of Mogenerator is that it generates a second set of classes for each Core Data entity. This second set will never be overwritten so you can write custom code in these. The first set of classes will be regenerated each time the model gets updated.</p>
+  
+  <p>Magical Record is available on Github. Like most iOS projects I&#39;ve found there, it seems the standard way to integrate this with your project is to copy the source files into your code and work away. I&#39;m not too comfortable with this approach and would prefer to keep third party libraries separate from my code. This would allow me to update these independently and share them between projects. I&#39;ll have to look into what options are available for this. </p>
+  
+  <p>
+    <small><a href="05/15/starting-with-core-data.html">→</a> posted on May 15, 2012<span class="tag-item"><small class="label label-default label-tag">development</small></span></small>
+  </p>
+  <hr />
+</ul>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="well">
+            <h4>
+              Tags
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="../tags/microposts.html">microposts</a> (24)
+              </li>
+              <li>
+                <a href="../tags/octopress.html">octopress</a> (4)
+              </li>
+              <li>
+                <a href="../tags/gaming.html">gaming</a> (3)
+              </li>
+              <li>
+                <a href="../tags/development.html">development</a> (46)
+              </li>
+              <li>
+                <a href="../tags/apple.html">apple</a> (3)
+              </li>
+              <li>
+                <a href="../tags/heroku.html">heroku</a> (2)
+              </li>
+              <li>
+                <a href="../tags/business.html">business</a> (1)
+              </li>
+              <li>
+                <a href="../tags/chess.html">chess</a> (2)
+              </li>
+              <li>
+                <a href="../tags/games.html">games</a> (2)
+              </li>
+              <li>
+                <a href="../tags/gaeilge.html">gaeilge</a> (2)
+              </li>
+              <li>
+                <a href="../tags/music.html">music</a> (2)
+              </li>
+              <li>
+                <a href="../tags/architecture.html">architecture</a> (1)
+              </li>
+              <li>
+                <a href="../tags/tech.html">tech</a> (1)
+              </li>
+              <li>
+                <a href="../tags/javascript.html">javaScript</a> (1)
+              </li>
+              <li>
+                <a href="../tags/fortnite.html">fortnite</a> (1)
+              </li>
+              <li>
+                <a href="../tags/gaeilge.html">Gaeilge</a> (1)
+              </li>
+              <li>
+                <a href="../tags/projects.html">projects</a> (1)
+              </li>
+            </ul>
+          </div>
+          <div class="well">
+            <h4>
+              By year
+            </h4>
+            <ol>
+              <li>
+                <a href="../2020.html">2020</a> (14)
+              </li>
+              <li>
+                <a href="../2019.html">2019</a> (17)
+              </li>
+              <li>
+                <a href="../2018.html">2018</a> (2)
+              </li>
+              <li>
+                <a href="../2017.html">2017</a> (11)
+              </li>
+              <li>
+                <a href="../2016.html">2016</a> (3)
+              </li>
+              <li>
+                <a href="../2015.html">2015</a> (6)
+              </li>
+              <li>
+                <a href="../2014.html">2014</a> (3)
+              </li>
+              <li>
+                <a href="../2013.html">2013</a> (11)
+              </li>
+              <li>
+                <a href="../2012.html">2012</a> (25)
+              </li>
+            </ol>
+          </div>
+          <div class="well">
+            <h4>
+              Links
+            </h4>
+            <ul class="list-unstyled">
+              <li>
+                <a href="http://www.gerardcondon.com">Gerard Condon</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
